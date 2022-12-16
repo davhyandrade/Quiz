@@ -1,0 +1,553 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+:root {
+  --bg-color: white;
+  --bg-panel: #f5f5f5;
+  --color-text: gray;
+  --color-primary: rgb(0, 132, 255);
+  --color-border: #edeff0;
+  --color-headings: #454545;
+  --color: white;
+}
+
+.menu {
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+}
+.menu .position {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  justify-content: space-between;
+}
+.menu .position > img {
+  filter: grayscale(1);
+}
+.menu .position a {
+  text-decoration: none;
+  padding: 10px 35px;
+  color: var(--color-text);
+  border-radius: 10px;
+}
+.menu .position a:nth-child(2) {
+  background-color: var(--bg-panel);
+}
+.menu .position a:nth-child(2):hover {
+  transition: 1s;
+  color: var(--color-text);
+  opacity: 35%;
+}
+.menu .position a:nth-child(2):active {
+  transition: 0.1s;
+  opacity: 100%;
+  color: var(--color-text);
+}
+.menu .position a:hover {
+  transition: 1s;
+  color: var(--color-primary);
+}
+.menu .position a:active {
+  transition: 0.1s;
+  color: var(--color-text);
+}
+.menu .btn-menu {
+  width: 80%;
+  position: absolute;
+  bottom: 10px;
+}
+.menu .btn-menu a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 1rem;
+  padding: 11px 25px;
+}
+.menu .btn-menu a:hover {
+  transition: 1s;
+  color: var(--color-primary);
+}
+.menu .btn-menu a:active {
+  transition: 0.1s;
+  color: var(--color-text);
+  opacity: 50%;
+}
+.menu #active {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.field-loader {
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-color);
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: 0s;
+}
+.field-loader .field {
+  margin-bottom: 25vh;
+}
+.field-loader .field .loader, .field-loader .field .loader:before, .field-loader .field .loader:after {
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.field-loader .field .loader {
+  color: var(--color-text);
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.field-loader .field .loader:before, .field-loader .field .loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.field-loader .field .loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.field-loader .field .loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%, 80%, 100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%, 80%, 100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+dialog {
+  left: 50%;
+  top: 50%;
+  margin: -42.5vh -350px;
+  width: 700px;
+  max-height: 85vh;
+  background: var(--bg-color);
+  border-radius: 15px;
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+dialog::-webkit-scrollbar {
+  width: 10px;
+  border: none;
+}
+dialog::-webkit-scrollbar-track {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-color: var(--bg-color);
+}
+dialog::-webkit-scrollbar-thumb {
+  background-color: var(--bg-panel);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: 1px solid var(--color-text);
+}
+@media only screen and (max-width: 800px) {
+  dialog {
+    margin: -175px -47.5%;
+    min-width: 95%;
+  }
+}
+dialog .position {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+dialog .position form {
+  width: 83%;
+}
+dialog .position form #btn-delete {
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+  opacity: 60%;
+  border-radius: 7px;
+}
+dialog .position form #btn-delete:hover {
+  transition: 1s;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 100%;
+}
+dialog .position form #btn-delete:active {
+  transition: 0.1s;
+  opacity: 20%;
+}
+dialog .position form #btn-close {
+  width: 35px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  opacity: 60%;
+  border-radius: 7px;
+}
+dialog .position form #btn-close:hover {
+  transition: 1s;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 100%;
+}
+dialog .position form #btn-close:active {
+  transition: 0.1s;
+  opacity: 20%;
+}
+dialog .position form h1 {
+  font-size: 1.8rem;
+  color: var(--color-headings);
+  font-weight: normal;
+  margin-bottom: 55px;
+}
+dialog .position form > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+dialog .position form > div:nth-child(2) > div:nth-child(1) {
+  width: 55%;
+}
+dialog .position form > div:nth-child(2) > div:nth-child(2) {
+  width: 40%;
+}
+dialog .position form .field-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+dialog .position form .field-inputs:nth-child(5) {
+  margin-bottom: 0;
+}
+dialog .position form .field-inputs > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+dialog .position form .field-inputs > div input {
+  width: 80%;
+}
+dialog .position form .field-inputs .field-text {
+  width: 100%;
+  background-color: var(--bg-panel);
+  padding: 7px;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+dialog .position form .field-inputs .field-text > span {
+  color: var(--color-headings);
+  font-size: 1rem;
+  margin-left: 5px;
+}
+dialog .position form .field-inputs label {
+  position: absolute;
+  top: 0;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+dialog .position form .field-inputs input[type=text] {
+  border: none;
+  border-bottom: 2px solid var(--color-text);
+  padding: 5px;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--color-headings);
+}
+dialog .position form .field-inputs input[type=text] + label {
+  transform: translateY(-20px);
+  font-size: 0.9rem;
+}
+dialog .position form .field-inputs input[type=text]:-moz-placeholder-shown + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+dialog .position form .field-inputs input[type=text]:-ms-input-placeholder + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+dialog .position form .field-inputs input[type=text]:placeholder-shown + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+dialog .position form .field-inputs input[type=text]::-moz-placeholder {
+  visibility: hidden;
+}
+dialog .position form .field-inputs input[type=text]:-ms-input-placeholder {
+  visibility: hidden;
+}
+dialog .position form .field-inputs input[type=text]::placeholder {
+  visibility: hidden;
+}
+dialog .position form .field-inputs input[type=text]:focus {
+  transition: 1s;
+  border-bottom: 2px solid var(--color-primary);
+}
+dialog .position form .field-inputs input[type=text]:focus + label {
+  transition: 0.5s;
+  transform: translateY(-20px);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+dialog .position form .field-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+dialog .position form .field-upload span {
+  font-size: 0.7rem;
+  color: var(--color-text);
+  text-align: center;
+  width: 70%;
+  margin-bottom: 15px;
+}
+dialog .position form .field-upload .field-image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 2px dashed var(--color-border);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+dialog .position form .field-upload .field-image > img {
+  width: 100%;
+  border-radius: 2px;
+}
+dialog .position form .field-upload input[type=file] {
+  display: none;
+}
+dialog .position form .field-upload input[type=file] ~ label {
+  background-color: var(--bg-panel);
+  padding: 7px 25px;
+  cursor: pointer;
+  border: 2px solid var(--bg-panel);
+  color: var(--color-headings);
+  border-radius: 5px;
+  font-size: 1rem;
+  position: static;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+dialog .position form .field-upload input[type=file] ~ label:hover {
+  transition: 1s;
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+dialog .position form .field-upload input[type=file] ~ label:active {
+  transition: 0.1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+}
+dialog .position form .field-page {
+  margin-bottom: 40px;
+}
+dialog .position form .field-page > div {
+  display: flex;
+  align-items: center;
+}
+dialog .position form .field-page > div span {
+  min-width: 25%;
+  max-height: 36.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 30px;
+  background-color: var(--bg-panel);
+  color: var(--color-headings);
+  border: 2px solid var(--bg-panel);
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+dialog .position form .field-page > div span:hover {
+  transition: 1s;
+  filter: brightness(0.7);
+}
+dialog .position form .field-page > div span:active {
+  transition: 0.1s;
+  filter: none;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  color: var(--color);
+}
+dialog .position form .field-page > div .active {
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  color: var(--color);
+}
+dialog .position form .field-page > div button {
+  min-width: 140px;
+  max-height: 36.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 30px;
+  width: auto;
+}
+dialog .position form .field-page::-webkit-scrollbar {
+  height: 10px;
+  border: none;
+}
+dialog .position form .field-page::-webkit-scrollbar-track {
+  background-color: var(--bg-color);
+}
+dialog .position form .field-page::-webkit-scrollbar-thumb {
+  background-color: var(--bg-panel);
+  border-radius: 30px;
+  border: 1px solid var(--color-border);
+}
+dialog .position form input[type=submit] {
+  width: 100%;
+  background-color: var(--color-primary);
+  padding: 10px;
+  cursor: pointer;
+  border: 2px solid var(--color-primary);
+  color: var(--color);
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  margin-top: 15px;
+}
+dialog .position form input[type=submit]:hover {
+  transition: 1s;
+  background-color: transparent;
+  color: var(--color-primary);
+}
+dialog .position form input[type=submit]:active {
+  transition: 0.1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+}
+dialog .position form button {
+  background-color: var(--bg-panel);
+  color: var(--color-headings);
+  border: 2px solid var(--bg-panel);
+  font-weight: normal;
+  width: 18%;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+dialog .position form button:hover {
+  transition: 1s;
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+dialog .position form button:active {
+  transition: 0.1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+}
+dialog::-webkit-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.field-quizzes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.field-quizzes > .position {
+  width: 82%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.field-quizzes > .position .quiz {
+  cursor: pointer;
+  width: 24.4%;
+  height: 200px;
+  border-radius: 10px;
+  margin: 0.3%;
+  background-color: var(--bg-panel);
+}
+.field-quizzes > .position .add-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.field-quizzes > .position .add-button:hover span {
+  transition: 1s;
+  opacity: 30%;
+}
+.field-quizzes > .position .add-button:hover > img {
+  transition: 1s;
+  opacity: 10%;
+}
+.field-quizzes > .position .add-button:active {
+  transition: 1s;
+  filter: brightness(0.5);
+}
+.field-quizzes > .position .add-button:active span {
+  transition: 0.1s;
+  opacity: 100%;
+}
+.field-quizzes > .position .add-button:active > img {
+  transition: 0.1s;
+  opacity: 50%;
+}
+.field-quizzes > .position .add-button img {
+  opacity: 45%;
+}
+.field-quizzes > .position .add-button span {
+  color: var(--color-text);
+  margin-top: 15px;
+  font-size: 1.1rem;
+}/*# sourceMappingURL=globals.css.map */

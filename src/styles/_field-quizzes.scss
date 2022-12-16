@@ -1,0 +1,67 @@
+.field-quizzes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > .position {
+    width: 82%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+    .quiz {
+      cursor: pointer;
+      width: 24.4%;
+      height: 200px;
+      border-radius: 10px;
+      margin: 0.3%;
+      background-color: var(--bg-panel);
+    }
+
+    .add-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        span {
+          transition: 1s;
+          opacity: 30%;
+        }
+        
+        > img {
+          transition: 1s;
+          opacity: 10%;
+        }
+      }
+      
+      &:active {
+        transition: 1s;
+        filter: brightness(0.5);
+        
+        span {
+          transition: 0.1s;
+          opacity: 100%;
+        }
+
+        > img {
+          transition: 0.1s;
+          opacity: 50%;
+        }
+      }
+
+      img {
+        opacity: 45%;
+      }
+
+      span {
+        color: var(--color-text);
+        margin-top: 15px;
+        font-size: 1.1rem;
+      } 
+      
+    }
+  }
+}
