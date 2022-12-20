@@ -199,7 +199,7 @@ dialog .position form {
 }
 dialog .position form #btn-delete {
   position: absolute;
-  right: 5px;
+  right: 10px;
   cursor: pointer;
   opacity: 60%;
   border-radius: 7px;
@@ -237,6 +237,11 @@ dialog .position form h1 {
   font-weight: normal;
   margin-bottom: 55px;
 }
+dialog .position form hr {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 25px;
+}
 dialog .position form > div:nth-child(2) {
   display: flex;
   justify-content: space-between;
@@ -255,7 +260,7 @@ dialog .position form .field-inputs {
   position: relative;
   margin-bottom: 40px;
 }
-dialog .position form .field-inputs:nth-child(5) {
+dialog .position form .field-inputs:nth-child(6) {
   margin-bottom: 0;
 }
 dialog .position form .field-inputs > div {
@@ -265,6 +270,44 @@ dialog .position form .field-inputs > div {
 }
 dialog .position form .field-inputs > div input {
   width: 80%;
+}
+dialog .position form .field-inputs > div input[type=radio] {
+  position: absolute;
+  right: 32px;
+  cursor: pointer;
+  width: 20px;
+}
+dialog .position form .field-inputs > div input[type=radio]:checked {
+  -webkit-animation: boom 0.2s ease-in;
+          animation: boom 0.2s ease-in;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
+@-webkit-keyframes boom {
+  0% {
+    opacity: 0.2;
+    transform: scale(1.5);
+  }
+  90% {
+    opacity: 0.01;
+    transform: scale(3);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes boom {
+  0% {
+    opacity: 0.2;
+    transform: scale(1.5);
+  }
+  90% {
+    opacity: 0.01;
+    transform: scale(3);
+  }
+  100% {
+    transform: none;
+  }
 }
 dialog .position form .field-inputs .field-text {
   width: 100%;
@@ -279,6 +322,7 @@ dialog .position form .field-inputs .field-text > span {
   color: var(--color-headings);
   font-size: 1rem;
   margin-left: 5px;
+  width: 90%;
 }
 dialog .position form .field-inputs label {
   position: absolute;
@@ -407,10 +451,18 @@ dialog .position form .field-page > div span {
   border-radius: 3px;
   font-size: 1rem;
   margin-left: 10px;
+  position: relative;
+}
+dialog .position form .field-page > div span #btn-delete {
+  opacity: 20%;
 }
 dialog .position form .field-page > div span:hover {
   transition: 1s;
   filter: brightness(0.7);
+}
+dialog .position form .field-page > div span:hover > #btn-delete {
+  transition: 1s;
+  opacity: 70%;
 }
 dialog .position form .field-page > div span:active {
   transition: 0.1s;
@@ -419,10 +471,18 @@ dialog .position form .field-page > div span:active {
   border: 2px solid var(--color-primary);
   color: var(--color);
 }
+dialog .position form .field-page > div span:active > #btn-delete {
+  transition: 0.1s;
+  opacity: 20%;
+}
 dialog .position form .field-page > div .active {
   background-color: var(--color-primary);
   border: 2px solid var(--color-primary);
   color: var(--color);
+}
+dialog .position form .field-page > div .active #btn-delete {
+  opacity: 90%;
+  filter: invert(1);
 }
 dialog .position form .field-page > div button {
   min-width: 140px;

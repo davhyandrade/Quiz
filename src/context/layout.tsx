@@ -11,6 +11,7 @@ interface IContext {
   inputQuestionsQuiz?: LegacyRef<HTMLInputElement>;
   inputStatementQuiz?: LegacyRef<HTMLInputElement>;
   inputImageQuiz?: LegacyRef<HTMLInputElement>;
+  inputResponseQuiz?: LegacyRef<HTMLInputElement>;
   setIsActiveDialog?: any;
   isActiveDialog?: boolean;
   dialog?: LegacyRef<HTMLDialogElement>;
@@ -45,6 +46,7 @@ export default function Layout({ children }: ComponentProps) {
   const inputQuestionsQuiz = useRef<any>(null);
   const inputStatementQuiz = useRef<any>(null);
   const inputImageQuiz = useRef<any>(null);
+  const inputResponseQuiz = useRef<any>(null);
 
   function handleOpenDialog() {
     window.scrollTo(0, 0)
@@ -75,6 +77,7 @@ export default function Layout({ children }: ComponentProps) {
             inputQuestionsQuiz,
             inputImageQuiz,
             inputStatementQuiz,
+            inputResponseQuiz,
             setIsActiveDialog,
             isActiveDialog,
             dialog,

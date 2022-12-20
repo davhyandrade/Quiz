@@ -27,35 +27,6 @@ export default function Dialog() {
     }
   }
 
-  const [questions, setQuestions] = useState<any>([{}]);
-  const [id, setId] = useState<number>(1);
-
-  function handleQuestions() {
-    if (inputQuestionsQuiz.current.value === '') return;
-
-    let i = id;
-    i++
-    setId(i)
-    
-    const questionObject = new Object({
-      [inputQuestionsQuiz.current.name]: inputQuestionsQuiz.current.value,
-      id,
-    });
-
-    setQuestions((prevData: Array<object>) => [...prevData, questionObject]);
-
-    inputQuestionsQuiz.current.value = '';
-
-    handleUpdatePageQuiz();
-  }
-
-  function handleDeleteQuestion(id: number) {
-    setQuestions(questions.filter((value: any) => value.id !== id));
-    questions.map((element: any) => {
-      if (element.id > id) element.id -= 1;
-    });
-  }
-
   const [previewSource, setPreviewSource] = useState();
 
   function previewFile(file: any) {
@@ -67,37 +38,91 @@ export default function Dialog() {
     };
   }
 
+  const [questions, setQuestions] = useState<any>([{}]);
+  const [id, setId] = useState<number>(1);
+
+  function handleQuestions() {
+    if (inputQuestionsQuiz.current.value === '') return;
+
+    let i = id;
+    i++;
+    setId(i);
+
+    const questionObject = new Object({
+      [inputQuestionsQuiz.current.name]: inputQuestionsQuiz.current.value,
+      id,
+    });
+
+    setQuestions((prevData: Array<object>) => [...prevData, questionObject]);
+
+    inputQuestionsQuiz.current.value = '';
+  }
+
+  function handleDeleteQuestion(id: number) {
+    setQuestions(questions.filter((value: any) => value.id !== id));
+    questions.map((element: any) => {
+      if (element.id >= id) element.id -= 1;
+    });
+    setId(Math.max(...questions.slice(1, questions.length).map((item: any) => item.id)) + 1);
+  }
+
   const { setDataQuiz } = useContext(Context);
   const { dataQuiz } = useContext(Context);
+  const [indexQuestionsPage, setIndexQuestionsPage] = useState<number>(1);
+
+  const [isActivePageQuiz, setIsActivePageQuiz] = useState<number>(1);
+
+  useEffect(() => {
+    if (dataQuiz[isActivePageQuiz - 1]?.data?.questions) {
+      if (typeof questions === 'string') {
+        setId(1);
+      } else {
+        setId(Math.max(...questions.slice(1, questions.length).map((item: any) => item.id)) + 1);
+      }
+    }
+  }, [isActivePageQuiz]);
+
+  function handlePageQuiz(id: number) {
+    setIsActivePageQuiz(id);
+    inputStatementQuiz.current.value = dataQuiz[id]?.data?.statement;
+    inputQuestionsQuiz.current.value = '';
+    setQuestions(dataQuiz[id]?.data?.questions);
+    setResponseQuiz(dataQuiz[id]?.data?.response);
+
+    if (id > 1) {
+      setIndexQuestionsPage(0);
+    } else {
+      setIndexQuestionsPage(1);
+    }
+  }
+
+  useEffect(() => {
+    handleUpdatePageQuiz();
+  }, [questions]);
 
   function handleUpdatePageQuiz() {
-    console.log(typeof questions[0].page);
-    console.log(questions);
-    
-    if (questions.length <= 1 && typeof questions[0].id === 'undefined') return;
-
     const updateDataQuiz = {
-      [inputStatementQuiz.current.name]: inputStatementQuiz.current.value,
+      [inputStatementQuiz.current?.name]: inputStatementQuiz.current?.value,
       questions,
+      response: responseQuiz,
     };
 
-    const pageQuizIndex = dataQuiz.findIndex((object: any) => object.id == isActivePageQuiz);
-    
     const updatePageQuiz = [...dataQuiz];
-    
-    updatePageQuiz[pageQuizIndex].data = updateDataQuiz;
-    
+
+    if (typeof updatePageQuiz[isActivePageQuiz] !== 'undefined') updatePageQuiz[isActivePageQuiz].data = updateDataQuiz;
+
     setDataQuiz(updatePageQuiz);
 
-    // console.log(dataQuiz);
+    console.log('dataQuiz');
+    console.log(dataQuiz);
   }
 
   const [idDataQuiz, setIdDataQuiz] = useState<number>(1);
 
   function createPageQuiz() {
     let i = idDataQuiz;
-    i++
-    setIdDataQuiz(i)
+    i++;
+    setIdDataQuiz(i);
 
     const Page = 'Page ' + idDataQuiz;
 
@@ -107,6 +132,7 @@ export default function Dialog() {
       data: {
         statement: '',
         questions: '',
+        response: '',
       },
     });
 
@@ -115,13 +141,31 @@ export default function Dialog() {
     console.log(dataQuiz);
   }
 
-  const [isActivePageQuiz, setIsActivePageQuiz] = useState<number>(1);
+  function handleDeletePageQuiz(id: number) {
+    setDataQuiz(dataQuiz.filter((value: any) => value.id !== id));
+    dataQuiz.map((element: any) => {
+      if (element.id >= id) [(element.id -= 1), (element.page = `Page ${element.id}`)];
+    });
+    setIdDataQuiz(Math.max(...dataQuiz.slice(1, dataQuiz.length).map((item: any) => item.id)) + 1);
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     console.log(questions);
-  //   }, 2000)
-  // }, [])
+    if (dataQuiz.length >= 3) {
+      setTimeout(() => {
+        inputStatementQuiz.current.value = '';
+      }, 0);
+    }
+  }
+
+  const { inputResponseQuiz }: any = useContext(Context);
+  const [responseQuiz, setResponseQuiz] = useState<number>();
+
+  useEffect(() => {
+    handleUpdatePageQuiz();
+  }, [responseQuiz]);
+
+  function handleInputRadio(id: number) {
+    setResponseQuiz(id);
+    console.log(id);
+  }
 
   return (
     <dialog onKeyDown={handleKeyPressDialog} ref={dialog}>
@@ -164,14 +208,27 @@ export default function Dialog() {
               <label htmlFor="input-file">Escolher Arquivo</label>
             </div>
           </div>
+          <hr />
           <div className="field-page">
             <div>
               <button onClick={createPageQuiz}>Add Page</button>
               {dataQuiz &&
                 dataQuiz.slice(1, dataQuiz.length).map((item: any) => {
                   return (
-                    <span onClick={() => [setIsActivePageQuiz(item.id), inputStatementQuiz.current.value = dataQuiz[item.id].data.statement]} className={`${isActivePageQuiz === item.id && 'active'}`} key={item.id}>
+                    <span
+                      onClick={() => handlePageQuiz(item.id)}
+                      className={`${isActivePageQuiz == item.id && 'active'}`}
+                      key={item.id}
+                    >
                       {item.page}
+                      <Image
+                        onClick={() => handleDeletePageQuiz(item.id)}
+                        id="btn-delete"
+                        src="https://i.postimg.cc/59r7rSZ7/vector-close.png"
+                        alt="button delete"
+                        width={10}
+                        height={10}
+                      />
                     </span>
                   );
                 })}
@@ -205,22 +262,32 @@ export default function Dialog() {
                     Add
                   </button>
                 </div>
-                {dataQuiz[isActivePageQuiz].data.questions.length >= 1 &&
-                  dataQuiz[isActivePageQuiz].data.questions.slice(0, dataQuiz[isActivePageQuiz].data.questions.length).map((item: any) => {
-                    return (
-                      <div key={item.id} className="field-text">
-                        <span>{item.id + ' - ' + item.questions}</span>
-                        <Image
-                          onClick={() => handleDeleteQuestion(item.id)}
-                          id="btn-delete"
-                          src="https://i.postimg.cc/prSVPYvN/btn-close.png"
-                          alt="button delete"
-                          width={20}
-                          height={20}
-                        />
-                      </div>
-                    );
-                  })}
+                {dataQuiz[isActivePageQuiz]?.data?.questions?.length >= 1 &&
+                  dataQuiz[isActivePageQuiz]?.data?.questions
+                    .slice(indexQuestionsPage, questions.length)
+                    .map((item: any) => {
+                      return (
+                        <div key={item.id} className="field-text">
+                          <span>{item.id + ' - ' + item.questions}</span>
+                          <input
+                            ref={inputResponseQuiz}
+                            onChange={() => handleInputRadio(item.id)}
+                            type="radio"
+                            name={`input-radio${isActivePageQuiz}`}
+                            key={item.id}
+                            checked={dataQuiz[isActivePageQuiz]?.data?.response === item.id}
+                          />
+                          <Image
+                            onClick={() => handleDeleteQuestion(item.id)}
+                            id="btn-delete"
+                            src="https://i.postimg.cc/59r7rSZ7/vector-close.png"
+                            alt="button delete"
+                            width={13}
+                            height={13}
+                          />
+                        </div>
+                      );
+                    })}
               </div>
             </>
           )}

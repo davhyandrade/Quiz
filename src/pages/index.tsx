@@ -1,8 +1,8 @@
-import Image from "next/image"
-import Dialog from "../components/Dialog"
-import { createGlobalStyle } from 'styled-components'
-import { useContext } from "react";
-import { Context } from "../context/layout";
+import Image from 'next/image';
+import Dialog from '../components/Dialog';
+import { createGlobalStyle } from 'styled-components';
+import { useContext, useEffect } from 'react';
+import { Context } from '../context/layout';
 
 interface IProps {
   isActiveDialog: boolean | undefined;
@@ -25,11 +25,17 @@ const GlobalStyles = createGlobalStyle<IProps>`
     .field-page > div {
       margin-bottom: 10px;
     }`}
+
+  ${(props) =>
+    props.dataQuiz.length === 1 &&
+    `dialog .position form .field-page {
+      margin-bottom: 15px;
+    }`}
 `;
 
 export default function Home() {
-  const { isActiveDialog } = useContext(Context)
-  const { handleOpenDialog } = useContext(Context)
+  const { isActiveDialog } = useContext(Context);
+  const { handleOpenDialog } = useContext(Context);
   const { dataQuiz } = useContext(Context);
 
   return (
@@ -39,7 +45,7 @@ export default function Home() {
         <div className="position">
           <div className="add-button quiz" onClick={handleOpenDialog}>
             <Image
-              src='https://i.postimg.cc/ZqDQySGV/vector-add.png'
+              src="https://i.postimg.cc/ZqDQySGV/vector-add.png"
               alt="vector add"
               width={55}
               height={55}
@@ -49,8 +55,8 @@ export default function Home() {
             <span>Adicionar Quiz</span>
           </div>
         </div>
-        <Dialog/>
+        <Dialog />
       </div>
     </>
-  )
+  );
 }

@@ -46,7 +46,7 @@ dialog {
 
       #btn-delete {
         position: absolute;
-        right: 5px;
+        right: 10px;
         cursor: pointer;
         opacity: 60%;
         border-radius: 7px;
@@ -91,6 +91,13 @@ dialog {
         margin-bottom: 55px;
       }
 
+      hr {
+        border: none;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 25px;
+      }
+
+
       > div:nth-child(2) {
         display: flex;
         justify-content: space-between;
@@ -112,7 +119,7 @@ dialog {
         position: relative;
         margin-bottom: 40px;
 
-        &:nth-child(5) {
+        &:nth-child(6) {
           margin-bottom: 0;
         }
 
@@ -123,6 +130,34 @@ dialog {
 
           input {
             width: 80%;
+          }
+
+          input[type='radio'] {
+            position: absolute;
+            right: 32px;
+            cursor: pointer;
+            width: 20px;
+            
+            &:checked {
+              animation: boom .2s ease-in;
+              animation-iteration-count: 1;
+            }
+          }
+
+          @keyframes boom {
+            0% {
+              opacity: .2;
+              transform: scale(1.5);
+            }
+
+            90% {
+              opacity: .01;
+              transform: scale(3);
+            }
+          
+            100% {
+              transform: none;
+            }
           }
         }
 
@@ -139,6 +174,7 @@ dialog {
             color: var(--color-headings);
             font-size: 1rem;
             margin-left: 5px;
+            width: 90%;
           }
         }
 
@@ -270,10 +306,20 @@ dialog {
             border-radius: 3px;
             font-size: 1rem;
             margin-left: 10px;
+            position: relative;
+
+            #btn-delete {
+              opacity: 20%;
+            }
 
             &:hover {
               transition: 1s;
               filter: brightness(0.7);
+
+              & > #btn-delete {
+                transition: 1s;
+                opacity: 70%;
+              }
             }
   
             &:active {
@@ -282,6 +328,11 @@ dialog {
               background-color: var(--color-primary);
               border: 2px solid var(--color-primary);
               color: var(--color);
+
+              & > #btn-delete {
+                transition: 0.1s;
+                opacity: 20%;
+              }
             }
           }
   
@@ -289,7 +340,12 @@ dialog {
             background-color: var(--color-primary);
             border: 2px solid var(--color-primary);
             color: var(--color);
-          }
+
+            #btn-delete {
+              opacity: 90%;
+              filter: invert(1);
+            }
+          }       
           
           button {
             min-width: 140px;
