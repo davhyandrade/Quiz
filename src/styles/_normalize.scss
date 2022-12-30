@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-color);
 }
@@ -12,7 +16,7 @@ body {
 :root {
     --bg-color: white;
     --bg-panel: #f5f5f5;
-    --color-text: gray;
+    --color-text: gray; 
     --color-primary: rgb(0, 132, 255);
     --color-border: #edeff0;
     --color-headings: #454545;

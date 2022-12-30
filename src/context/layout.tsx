@@ -4,6 +4,7 @@ import Menu from '../components/Menu';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import Footer from '../components/Footer';
 
 interface IContext {
   handlePageLoaded?: any;
@@ -130,6 +131,7 @@ export default function Layout({ children }: ComponentProps) {
         >
           <Menu />
           <section>{children}</section>
+          <Footer/>
           <ToastContainer />
         </Context.Provider>
       )}
