@@ -13,14 +13,10 @@ const quizSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  questions: {
-    type: String,
+  pages: [{
+    type: Array,
     require: true,
-  },
-  response: {
-    type: Number,
-    require: true,
-  },
+  }],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

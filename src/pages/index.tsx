@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Dialog from '../components/Dialog';
 import { createGlobalStyle } from 'styled-components';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Context } from '../context/layout';
 
 interface IProps {
@@ -37,6 +37,7 @@ export default function Home() {
   const { isActiveDialog } = useContext(Context);
   const { handleOpenDialog } = useContext(Context);
   const { dataQuiz } = useContext(Context);
+  const { data } = useContext(Context);
 
   return (
     <>
@@ -54,6 +55,20 @@ export default function Home() {
             />
             <span>Adicionar Quiz</span>
           </div>
+          {data &&
+            data.map((item: any) => {
+              return (
+                <div key={item._id} className="quiz card">
+                  <Image src={item.image} alt="image quiz" fill loading="eager" priority />
+                  <div className="info-card">
+                    <div className="position">
+                      <h1>{item.title}</h1>
+                      <span>{item.description}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
         <Dialog />
       </div>

@@ -249,7 +249,9 @@ dialog {
           
           > img {
             width: 100%;
+            max-height: 200px;
             border-radius: 2px;
+            object-fit: cover;
           }
         }
 

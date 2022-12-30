@@ -33,10 +33,8 @@ export default function Menu() {
     setIsActiveButtonMenu(buttonsMenu.map((object) => object.url).indexOf(`${Router.pathname}`));
   }, []);
 
-  const { handlePageLoaded } = useContext(Context);
-
   return (
-    <nav onLoad={handlePageLoaded} className="menu">
+    <nav className="menu">
       <div className="position">
         <Image src={urlImage[0].url} alt="logo" loading="eager" width={85} height={46} priority />
         <div>

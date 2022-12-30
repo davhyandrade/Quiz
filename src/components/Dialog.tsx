@@ -1,22 +1,67 @@
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { Context } from '../context/layout';
 import Image from 'next/image';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function Dialog() {
   const { handleCloseDialog } = useContext(Context);
-  const { inputDescriptionQuiz } = useContext(Context);
-  const { inputTitleQuiz } = useContext(Context);
+  const { inputDescriptionQuiz }: any = useContext(Context);
+  const { inputTitleQuiz }: any = useContext(Context);
   const { inputQuestionsQuiz }: any = useContext(Context);
   const { inputStatementQuiz }: any = useContext(Context);
   const { inputImageQuiz }: any = useContext(Context);
   const { dialog } = useContext(Context);
 
-  function handleForm(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-  }
+  const { setDataQuiz } = useContext(Context);
+  const { dataQuiz } = useContext(Context);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    handleForm(event);
+  const [isLoadingModal, setIsLoadingModal] = useState<boolean>(false);
+
+  const { fetchData } = useContext(Context);
+
+  async function handleForm(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsLoadingModal(true);
+
+    try {
+      if (!previewSource) {
+        setIsLoadingModal(false);
+        return toast.error('Realize o Upload de uma Imagem!!', {
+          theme: 'colored',
+        });
+      }
+
+      if (dataQuiz.length === 1) {
+        setIsLoadingModal(false);
+        return toast.error('Crie as páginas do Quiz!!', {
+          theme: 'colored', 
+        });
+      }
+
+      const imageURL = await axios.post('api/image.upload', {
+        imageBase64: previewSource,
+        preset: 'quiz-images-uploads',
+      });
+
+      const createQuiz = await axios.post('api/quiz', {
+        title: inputTitleQuiz.current.value,
+        description: inputDescriptionQuiz.current.value,
+        image: imageURL.data.uploadResponse.url,
+        pages: dataQuiz.slice(1, dataQuiz.length),
+      });
+      handleCloseDialog();
+      setIsLoadingModal(false);
+      fetchData();
+      toast.success(createQuiz.data.msg, {
+        theme: 'colored',
+      });
+    } catch (error: any) {
+      toast.error(error.response.data.msg, {
+        theme: 'colored',
+      });
+      console.log(error);
+    }
   }
 
   const { setIsActiveDialog } = useContext(Context);
@@ -27,7 +72,7 @@ export default function Dialog() {
     }
   }
 
-  const [previewSource, setPreviewSource] = useState();
+  const { setPreviewSource, previewSource } = useContext(Context);
 
   function previewFile(file: any) {
     const reader: any = new FileReader();
@@ -41,7 +86,9 @@ export default function Dialog() {
   const [questions, setQuestions] = useState<any>([{}]);
   const [id, setId] = useState<number>(1);
 
-  function handleQuestions() {
+  function handleQuestions(event: any) {
+    event.preventDefault();
+
     if (inputQuestionsQuiz.current.value === '') return;
 
     let i = id;
@@ -66,8 +113,6 @@ export default function Dialog() {
     setId(Math.max(...questions.slice(1, questions.length).map((item: any) => item.id)) + 1);
   }
 
-  const { setDataQuiz } = useContext(Context);
-  const { dataQuiz } = useContext(Context);
   const [indexQuestionsPage, setIndexQuestionsPage] = useState<number>(1);
 
   const [isActivePageQuiz, setIsActivePageQuiz] = useState<number>(1);
@@ -119,7 +164,9 @@ export default function Dialog() {
 
   const [idDataQuiz, setIdDataQuiz] = useState<number>(1);
 
-  function createPageQuiz() {
+  function createPageQuiz(event: any) {
+    event.preventDefault();
+
     let i = idDataQuiz;
     i++;
     setIdDataQuiz(i);
@@ -170,7 +217,7 @@ export default function Dialog() {
   return (
     <dialog onKeyDown={handleKeyPressDialog} ref={dialog}>
       <div className="position">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleForm}>
           <h1>Adicionar Quiz</h1>
           <div>
             <div>
@@ -273,7 +320,7 @@ export default function Dialog() {
                             ref={inputResponseQuiz}
                             onChange={() => handleInputRadio(item.id)}
                             type="radio"
-                            name={`input-radio${isActivePageQuiz}`}
+                            name="input-radio"
                             key={item.id}
                             checked={dataQuiz[isActivePageQuiz]?.data?.response === item.id}
                           />
@@ -291,7 +338,7 @@ export default function Dialog() {
               </div>
             </>
           )}
-          <input type="submit" value="Criar Quiz" />
+          <input type="submit" value={`${isLoadingModal ? 'Criando...' : 'Criar Quiz'}`} />
           <input
             onClick={handleCloseDialog}
             id="btn-close"
