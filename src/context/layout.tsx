@@ -113,7 +113,6 @@ export default function Layout({ children }: ComponentProps) {
   function handleIsActiveTheme() {
     const theme: any = localStorage.getItem('theme');
     if (theme) setIsActiveTheme(theme);
-    else setIsActiveTheme('ligth');
   }
 
   useEffect(() => {
