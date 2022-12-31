@@ -25,13 +25,15 @@ export default function Menu() {
     },
     {
       name: 'Settings',
-      url: '/setting',
+      url: '/settings/account',
     },
   ];
 
   useEffect(() => {
     setIsActiveButtonMenu(buttonsMenu.map((object) => object.url).indexOf(`${Router.pathname}`));
   }, []);
+
+  const { fetchData } = useContext(Context);
 
   return (
     <nav className="menu">
@@ -47,7 +49,7 @@ export default function Menu() {
           return (
             <Link
               key={id}
-              onClick={() => setIsActiveButtonMenu(id)}
+              onClick={async () => {setIsActiveButtonMenu(id); if (item.url === '/') await fetchData()}}
               id={`${isActiveButtonMenu === id && 'active'}`}
               href={item.url}
             >

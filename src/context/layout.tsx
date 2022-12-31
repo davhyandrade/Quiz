@@ -1,10 +1,12 @@
 import { createContext, LegacyRef, ReactNode, useEffect, useRef, useState } from 'react';
 import Loader from '../components/Loader';
 import Menu from '../components/Menu';
+import Themes from '../components/Themes';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Footer from '../components/Footer';
+import Router from 'next/router';
 
 interface IContext {
   handlePageLoaded?: any;
@@ -26,6 +28,9 @@ interface IContext {
   fetchData?: any;
   setPreviewSource?: any;
   previewSource?: any;
+  setIsActiveTheme?: any;
+  isActiveTheme?: any;
+  handleIsActiveTheme?: any;
 }
 
 export const Context = createContext<IContext>({});
@@ -45,7 +50,7 @@ export default function Layout({ children }: ComponentProps) {
   function handlePageLoaded() {
     setTimeout(() => {
       setIsActiveLoading(false);
-    }, 2000);
+    }, 2500);
   }
 
   const [data, setData] = useState<any>();
@@ -68,7 +73,8 @@ export default function Layout({ children }: ComponentProps) {
   };
 
   useEffect(() => {
-    fetchData();
+    if (Router.pathname === '/') fetchData();
+    if (Router.pathname !== '/') handlePageLoaded();
   }, []);
 
   const [isActiveDialog, setIsActiveDialog] = useState<boolean>(false);
@@ -102,6 +108,17 @@ export default function Layout({ children }: ComponentProps) {
   const [previewSource, setPreviewSource] = useState<string>();
   const [dataQuiz, setDataQuiz] = useState<any>([{}]);
 
+  const [isActiveTheme, setIsActiveTheme] = useState<string>('light');
+
+  function handleIsActiveTheme() {
+    const theme: any = localStorage.getItem('theme');
+    setIsActiveTheme(theme);
+  }
+
+  useEffect(() => {
+    handleIsActiveTheme();
+  }, []);
+
   return (
     <>
       {isActiveLoading && <Loader />}
@@ -127,12 +144,16 @@ export default function Layout({ children }: ComponentProps) {
             fetchData,
             setPreviewSource,
             previewSource,
+            setIsActiveTheme,
+            isActiveTheme,
+            handleIsActiveTheme
           }}
         >
           <Menu />
           <section>{children}</section>
-          <Footer/>
+          <Footer />
           <ToastContainer />
+          <Themes/>
         </Context.Provider>
       )}
     </>

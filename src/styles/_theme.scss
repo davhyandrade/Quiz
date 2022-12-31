@@ -1,0 +1,112 @@
+.theme-field {
+  display: flex;
+  justify-content: center;
+  width: 73%;
+
+  > .position {
+    width: 90%;
+    margin-top: 30px;
+
+    > h1 {
+      font-weight: normal;
+      font-size: 1.4rem;
+      color: var(--color-headings);
+      width: 100%;
+      border-bottom: 1px solid var(--color-border);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    
+    > span {
+      color: var(--color-text);
+      font-size: 0.9rem;
+    }
+    
+    > div {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .theme-card {
+      width: 300px;
+      height: 215px;
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      margin: 0 20px 20px 0;
+
+      &:hover {
+        transition: 1s;
+        background-color: var(--bg-panel);
+
+        div:nth-child(1) {
+          transition: 3s;
+          background-color: var(--color-text);
+          opacity: 50%;
+          
+          h1 {
+            transition: 1s;
+            color: var(--color);
+          }
+        }
+
+        img {
+          transition: 1s;
+          opacity: 70%;
+        }
+      }
+
+      &:active {
+        transition: 1ms;
+        opacity: 30%;
+      }
+
+      div:nth-child(1) {
+        width: 100%;
+        padding: 10px 20px;
+        background-color: var(--bg-panel);
+        border-start-start-radius: 10px;
+        h1 {
+          opacity: 80%;
+          font-size: 1rem;
+          font-weight: normal;
+          color: var(--color-headings);
+        }
+      }
+
+      img {
+        width: 90%;
+        height: 143px;
+        border-radius: 5px;
+        border: 1px solid var(--color-border);
+        margin-top: 13px;
+      }
+    }
+
+    .active {
+      border: 1px solid var(--color-primary);
+      position: relative;
+      overflow: initial;
+
+      &::after {
+        content: url(https://i.postimg.cc/FsDBx49S/vector-check.png);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 20px;
+        background-color: var(--color-primary);
+        position: absolute;
+        top: -5px;
+        right: -5px;
+      }
+    }
+  }
+}

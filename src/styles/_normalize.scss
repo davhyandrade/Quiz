@@ -11,15 +11,26 @@ html {
 
 body {
     background-color: var(--bg-color);
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        border: none;
+      }
+      
+      &::-webkit-scrollbar-track {
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        background-color: var(--bg-color);
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--bg-panel);
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        border: 1px solid var(--color-text);
+      }
 }
 
-:root {
-    --bg-color: white;
-    --bg-panel: #f5f5f5;
-    --color-text: gray; 
-    --color-primary: rgb(0, 132, 255);
-    --color-border: #edeff0;
-    --color-headings: #454545;
-    --color: white;
-    --color-opposite: rgba(0, 0, 0, 0.7);
-}
+section {
+    min-height: 60vh;
+}   

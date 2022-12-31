@@ -59,7 +59,7 @@ export default function Home() {
             data.map((item: any) => {
               return (
                 <div key={item._id} className="quiz card">
-                  <Image src={item.image} alt="image quiz" fill loading="eager" priority />
+                  <Image src={item.image} alt="quiz image" fill loading="eager" priority />
                   <div className="info-card">
                     <div className="position">
                       <h1>{item.title}</h1>
