@@ -74,7 +74,7 @@ export default function Layout({ children }: ComponentProps) {
 
   useEffect(() => {
     if (Router.pathname === '/') fetchData();
-    if (Router.pathname !== '/') handlePageLoaded();
+    else handlePageLoaded();
   }, []);
 
   const [isActiveDialog, setIsActiveDialog] = useState<boolean>(false);
@@ -112,7 +112,8 @@ export default function Layout({ children }: ComponentProps) {
 
   function handleIsActiveTheme() {
     const theme: any = localStorage.getItem('theme');
-    setIsActiveTheme(theme);
+    if (theme) setIsActiveTheme(theme);
+    else setIsActiveTheme('ligth');
   }
 
   useEffect(() => {
@@ -146,14 +147,14 @@ export default function Layout({ children }: ComponentProps) {
             previewSource,
             setIsActiveTheme,
             isActiveTheme,
-            handleIsActiveTheme
+            handleIsActiveTheme,
           }}
         >
           <Menu />
           <section>{children}</section>
           <Footer />
           <ToastContainer />
-          <Themes/>
+          <Themes />
         </Context.Provider>
       )}
     </>

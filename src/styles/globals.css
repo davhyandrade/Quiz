@@ -195,52 +195,114 @@ footer > div p span {
 .field-loader .field {
   margin-bottom: 25vh;
 }
-.field-loader .field .loader, .field-loader .field .loader:before, .field-loader .field .loader:after {
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: load7 1.8s infinite ease-in-out;
-  animation: load7 1.8s infinite ease-in-out;
-}
-.field-loader .field .loader {
-  color: var(--color-text);
-  font-size: 10px;
-  margin: 80px auto;
+.field-loader .field .sk-chase {
+  width: 45px;
+  height: 45px;
   position: relative;
-  text-indent: -9999em;
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
+  -webkit-animation: sk-chase 2.5s infinite linear both;
+          animation: sk-chase 2.5s infinite linear both;
 }
-.field-loader .field .loader:before, .field-loader .field .loader:after {
-  content: "";
+.field-loader .field .sk-chase-dot {
+  width: 100%;
+  height: 100%;
   position: absolute;
+  left: 0;
   top: 0;
+  -webkit-animation: sk-chase-dot 2s infinite ease-in-out both;
+          animation: sk-chase-dot 2s infinite ease-in-out both;
 }
-.field-loader .field .loader:before {
-  left: -3.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
+.field-loader .field .sk-chase-dot::before {
+  content: "";
+  display: block;
+  width: 25%;
+  height: 25%;
+  background-color: var(--color-text);
+  border-radius: 100%;
+  -webkit-animation: sk-chase-dot-before 2s infinite ease-in-out both;
+          animation: sk-chase-dot-before 2s infinite ease-in-out both;
 }
-.field-loader .field .loader:after {
-  left: 3.5em;
+.field-loader .field .sk-chase-dot:nth-child(1) {
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
 }
-@-webkit-keyframes load7 {
-  0%, 80%, 100% {
-    box-shadow: 0 2.5em 0 -1.3em;
+.field-loader .field .sk-chase-dot:nth-child(2) {
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+.field-loader .field .sk-chase-dot:nth-child(3) {
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+.field-loader .field .sk-chase-dot:nth-child(4) {
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+.field-loader .field .sk-chase-dot:nth-child(5) {
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
+}
+.field-loader .field .sk-chase-dot:nth-child(6) {
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+.field-loader .field .sk-chase-dot:nth-child(1):before {
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+}
+.field-loader .field .sk-chase-dot:nth-child(2):before {
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+.field-loader .field .sk-chase-dot:nth-child(3):before {
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+.field-loader .field .sk-chase-dot:nth-child(4):before {
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+.field-loader .field .sk-chase-dot:nth-child(5):before {
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
+}
+.field-loader .field .sk-chase-dot:nth-child(6):before {
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+@-webkit-keyframes sk-chase {
+  100% {
+    transform: rotate(360deg);
   }
-  40% {
-    box-shadow: 0 2.5em 0 0;
+}
+@keyframes sk-chase {
+  100% {
+    transform: rotate(360deg);
   }
 }
-@keyframes load7 {
-  0%, 80%, 100% {
-    box-shadow: 0 2.5em 0 -1.3em;
+@-webkit-keyframes sk-chase-dot {
+  80%, 100% {
+    transform: rotate(360deg);
   }
-  40% {
-    box-shadow: 0 2.5em 0 0;
+}
+@keyframes sk-chase-dot {
+  80%, 100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes sk-chase-dot-before {
+  50% {
+    transform: scale(0.4);
+  }
+  100%, 0% {
+    transform: scale(1);
+  }
+}
+@keyframes sk-chase-dot-before {
+  50% {
+    transform: scale(0.4);
+  }
+  100%, 0% {
+    transform: scale(1);
   }
 }
 
