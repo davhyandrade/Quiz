@@ -157,9 +157,6 @@ export default function Dialog() {
     if (typeof updatePageQuiz[isActivePageQuiz] !== 'undefined') updatePageQuiz[isActivePageQuiz].data = updateDataQuiz;
 
     setDataQuiz(updatePageQuiz);
-
-    console.log('dataQuiz');
-    console.log(dataQuiz);
   }
 
   const [idDataQuiz, setIdDataQuiz] = useState<number>(1);
@@ -184,8 +181,6 @@ export default function Dialog() {
     });
 
     setDataQuiz((prevData: Array<object>) => [...prevData, pageQuiz]);
-
-    console.log(dataQuiz);
   }
 
   function handleDeletePageQuiz(id: number) {
@@ -211,7 +206,6 @@ export default function Dialog() {
 
   function handleInputRadio(id: number) {
     setResponseQuiz(id);
-    console.log(id);
   }
 
   return (
