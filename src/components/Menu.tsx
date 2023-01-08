@@ -49,7 +49,7 @@ export default function Menu() {
           return (
             <Link
               key={id}
-              onClick={async () => {setIsActiveButtonMenu(id); if (item.url === '/') await fetchData()}}
+              onClick={() => setIsActiveButtonMenu(id)}
               id={`${isActiveButtonMenu === id && 'active'}`}
               href={item.url}
             >

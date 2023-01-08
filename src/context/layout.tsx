@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Router from 'next/router';
+import Quiz from '../components/Quiz';
 
 interface IContext {
   handlePageLoaded?: any;
@@ -31,6 +32,14 @@ interface IContext {
   setIsActiveTheme?: any;
   isActiveTheme?: any;
   handleIsActiveTheme?: any;
+  setIsActiveQuiz?: any;
+  setQuiz?: any;
+  quiz?: any;
+  isActiveQuiz?: any;
+  setIdDataQuiz?: any;
+  idDataQuiz?: any;
+  setIsLoadingModal?: any;
+  isLoadingModal?: any;
 }
 
 export const Context = createContext<IContext>({});
@@ -45,7 +54,7 @@ export default function Layout({ children }: ComponentProps) {
 
   useEffect(() => {
     setIsVisiblePage(true);
-  });
+  }, []);
 
   function handlePageLoaded() {
     setTimeout(() => {
@@ -73,8 +82,7 @@ export default function Layout({ children }: ComponentProps) {
   };
 
   useEffect(() => {
-    if (Router.pathname === '/') fetchData();
-    else handlePageLoaded();
+    if (Router.pathname !== '/') handlePageLoaded();
   }, []);
 
   const [isActiveDialog, setIsActiveDialog] = useState<boolean>(false);
@@ -92,6 +100,10 @@ export default function Layout({ children }: ComponentProps) {
     setIsActiveDialog(true);
   }
 
+  const [isLoadingModal, setIsLoadingModal] = useState<boolean>(false);
+  const [idDataQuiz, setIdDataQuiz] = useState<number>(1);
+  const [previewSource, setPreviewSource] = useState<string>();
+
   function handleCloseDialog() {
     inputTitleQuiz.current.value = '';
     inputDescriptionQuiz.current.value = '';
@@ -100,12 +112,13 @@ export default function Layout({ children }: ComponentProps) {
       inputStatementQuiz.current.value = '';
     }
     setIsActiveDialog(false);
-    setPreviewSource('');
+    setPreviewSource(undefined);
     setDataQuiz([{}]);
+    setIdDataQuiz(1);
     dialog.current.close();
+    setIsLoadingModal(false);
   }
 
-  const [previewSource, setPreviewSource] = useState<string>();
   const [dataQuiz, setDataQuiz] = useState<any>([{}]);
 
   const [isActiveTheme, setIsActiveTheme] = useState<string>('light');
@@ -119,9 +132,18 @@ export default function Layout({ children }: ComponentProps) {
     handleIsActiveTheme();
   }, []);
 
+  const [isActiveQuiz, setIsActiveQuiz] = useState<boolean>(false);
+
+  const [quiz, setQuiz] = useState<any>();
+
+  function handleCloseQuiz() {
+    setIsActiveQuiz(false);
+  }
+
   return (
     <>
       {isActiveLoading && <Loader />}
+      {isActiveQuiz && <Quiz handleCloseQuiz={handleCloseQuiz} data={quiz} />}
       {isVisiblePage && (
         <Context.Provider
           value={{
@@ -147,6 +169,14 @@ export default function Layout({ children }: ComponentProps) {
             setIsActiveTheme,
             isActiveTheme,
             handleIsActiveTheme,
+            setIsActiveQuiz,
+            isActiveQuiz,
+            setQuiz,
+            quiz,
+            setIdDataQuiz,
+            idDataQuiz,
+            setIsLoadingModal,
+            isLoadingModal,
           }}
         >
           <Menu />

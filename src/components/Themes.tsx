@@ -17,7 +17,9 @@ const GlobalStyles = createGlobalStyle<IProps>`
       --color-border: #edeff0;
       --color-headings: #454545;
       --color: white;
+      --color2: white;
       --color-opposite: rgba(0, 0, 0, 0.7);
+      --bg-description: #cdcdcd;
       }`}
   ${(props) =>
     props.isActiveThemeDarkOrLight === 'dark' &&
@@ -30,6 +32,8 @@ const GlobalStyles = createGlobalStyle<IProps>`
       --color-headings: white;
       --color: #10151b;
       --color-opposite: rgba(0, 0, 0, 0.7);
+      --bg-description: #20262e;
+      --color2: #9d9d9d;
     }
     
     footer > div > div:nth-child(2) img {
@@ -42,6 +46,10 @@ const GlobalStyles = createGlobalStyle<IProps>`
 
     dialog::backdrop {
       background: #ffffff15;
+    }
+
+    dialog #btn-delete {
+      filter: invert(1);
     }
 
     svg {

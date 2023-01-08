@@ -28,5 +28,14 @@ export default async function handler(request: NextApiRequest, response: NextApi
         console.log(error);
       }
       break;
+    case 'GET':
+      try {
+        const quiz = await Quiz.findOne({_id: id});
+        response.status(200).json({ msg: 'Quiz selecionado com sucesso!!', quiz});
+      } catch (error) {
+        response.status(500).json({ msg: 'Aconteceu um erro no servidor!' });
+        console.log(error);
+      }
+      break;
   }
 }

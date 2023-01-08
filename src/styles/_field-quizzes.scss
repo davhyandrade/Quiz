@@ -42,9 +42,13 @@
             filter: drop-shadow(0px 0px 2px var(--color-opposite));
           }
           
-          span {
+          p {
             color: rgb(198, 198, 198);
             font-size: 1rem;
+            width: 100%;
+            text-overflow: ellipsis;
+            white-space: nowrap; 
+            overflow: hidden;
           }
         }
       }

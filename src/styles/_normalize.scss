@@ -1,36 +1,18 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-color);
-
-    &::-webkit-scrollbar {
-        width: 10px;
-        border: none;
-      }
-      
-      &::-webkit-scrollbar-track {
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
-        background-color: var(--bg-color);
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        background-color: var(--bg-panel);
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
-        border: 1px solid var(--color-text);
-      }
+  background-color: var(--bg-color);
 }
 
 section {
-    min-height: 60vh;
-}   
+  min-height: 75vh;
+}

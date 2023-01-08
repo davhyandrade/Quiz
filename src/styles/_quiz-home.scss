@@ -1,0 +1,171 @@
+.quiz-field {
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
+
+  .position {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+
+    > div:nth-child(1) {
+      width: 40%;
+
+      img {
+        width: 360px;
+        height: 220px;
+        border-radius: 15px;
+        border: 1px solid var(--color-border);
+        padding: 5px;
+        object-fit: cover;
+      }
+
+      > div {
+        display: flex;
+        margin-top: 10px;
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 30px;
+          color: var(--color-text);
+          border: 1px solid var(--color-border);
+          border-radius: 3px;
+          font-size: 0.8rem;
+
+          &:nth-child(2) {
+            margin-left: 10px;
+            color: var(--color-headings);
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    > div:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      width: 55%;
+
+      > h1 {
+        font-weight: normal;
+        font-size: 1.4rem;
+        color: var(--color-headings);
+        width: 100%;
+        border-bottom: 1px solid var(--color-border);
+        padding: 10px 0;
+        margin-bottom: 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        > div {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+
+          div:nth-child(1) svg {
+            margin-right: 3px;
+          }
+
+          > div {
+            position: relative;
+            
+            &:hover:after {
+              content: attr(data-description);
+              position: absolute;
+              top: -30px;
+              left: 17px;
+              padding: 7px 15px;
+              border: 1px solid var(--color-border);
+              border-radius: 10px 10px 10px 0;
+              background-color: var(--bg-description);
+              color: var(--color2);
+              font-size: 0.7rem;
+              z-index: 50;
+            }
+            
+            svg {
+              width: 22px;
+              height: 22px;
+              cursor: pointer;
+              opacity: 20%;
+              z-index: 99;
+    
+              &:hover {
+                transition: 1s;
+                opacity: 50%;
+              }
+    
+              &:active {
+                transition: 1ms;
+                opacity: 5%;
+              }
+            }
+          }
+        }
+      }
+
+      > span {
+        color: var(--color-text);
+        font-size: 0.9rem;
+      }
+
+      p {
+        color: var(--color-text);
+        font-size: 0.75rem;
+        opacity: 70%;
+        margin-top: 5px;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 10px;
+        width: 50%;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        margin-top: 20px;
+
+        &:hover {
+          transition: 1s;
+          background-color: var(--color-primary);
+          color: var(--color);
+          font-weight: bold;
+        }
+
+        &:active {
+          transition: 1ms;
+          opacity: 20%;
+        }
+      }
+
+      .data-quiz {
+        display: flex;
+        margin-top: 10px;
+
+        span {
+          display: flex;
+          align-items: center;
+          color: var(--color-text);
+          font-size: 0.7rem;
+          opacity: 50%;
+          margin-right: 20px;
+
+          svg {
+            width: 20px;
+            height: 20px;
+            opacity: 50%;
+            margin-right: 5px;
+            margin-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+}

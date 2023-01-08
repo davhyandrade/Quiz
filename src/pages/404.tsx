@@ -14,7 +14,7 @@ export default function NotFound() {
           loading="eager" 
         />
         <div className="div-info">
-          <h3>Look like you're lost</h3>
+          <h3>Look like you&apos;re lost</h3>
           <p>the page you are looking for not avaible!</p>
           <Link href='/' className="btn-home">Go to Home</Link>
         </div>

@@ -5,6 +5,10 @@ const quizSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  creator: {
+    type: String,
+    require: true,
+  },
   title: {
     type: String,
     require: true,

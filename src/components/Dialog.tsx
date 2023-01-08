@@ -16,8 +16,8 @@ export default function Dialog() {
   const { setDataQuiz } = useContext(Context);
   const { dataQuiz } = useContext(Context);
 
-  const [isLoadingModal, setIsLoadingModal] = useState<boolean>(false);
-
+  const { setIsLoadingModal, isLoadingModal } = useContext(Context);
+  
   const { fetchData } = useContext(Context);
 
   async function handleForm(event: FormEvent<HTMLFormElement>) {
@@ -29,16 +29,43 @@ export default function Dialog() {
         setIsLoadingModal(false);
         return toast.error('Realize o Upload de uma Imagem!!', {
           theme: 'colored',
-        });
+        }); 
       }
 
       if (dataQuiz.length === 1) {
         setIsLoadingModal(false);
         return toast.error('Crie as páginas do Quiz!!', {
-          theme: 'colored', 
+          theme: 'colored',
         });
       }
+  
+      let data = dataQuiz.map((item: any) => item.data).slice(1, dataQuiz.map((item: any) => item.data).length)
+      let i = 0
 
+      while (i <= data.length-1) {
+        if (typeof data[i].statement === 'undefined' || data[i].statement === '') {
+          setIsLoadingModal(false);
+          return toast.error('Alguma página está sem o enunciado!!', {
+            theme: 'colored',
+          });
+        } 
+
+        if (typeof data[i].questions === 'undefined' || data[i].questions === '') {
+          setIsLoadingModal(false);
+          return toast.error('Alguma página está sem questão!!', {
+            theme: 'colored',
+          });
+        } 
+
+        if (typeof data[i].response === 'undefined' || data[i].response === '') {
+          setIsLoadingModal(false);
+          return toast.error('Alguma página está sem resposta!!', {
+            theme: 'colored',
+          });
+        } 
+        i++
+      }   
+      
       const imageURL = await axios.post('api/image.upload', {
         imageBase64: previewSource,
         preset: 'quiz-images-uploads',
@@ -48,6 +75,7 @@ export default function Dialog() {
         title: inputTitleQuiz.current.value,
         description: inputDescriptionQuiz.current.value,
         image: imageURL.data.uploadResponse.url,
+        creator: 'Davhy Andrade',
         pages: dataQuiz.slice(1, dataQuiz.length),
       });
       handleCloseDialog();
@@ -64,12 +92,10 @@ export default function Dialog() {
     }
   }
 
-  const { setIsActiveDialog } = useContext(Context);
-
   function handleKeyPressDialog(event: any) {
     if (event.key === 'Escape') {
-      setIsActiveDialog(false);
-    }
+      handleCloseDialog();
+    } 
   }
 
   const { setPreviewSource, previewSource } = useContext(Context);
@@ -159,11 +185,11 @@ export default function Dialog() {
     setDataQuiz(updatePageQuiz);
   }
 
-  const [idDataQuiz, setIdDataQuiz] = useState<number>(1);
+  const { setIdDataQuiz, idDataQuiz } = useContext(Context);
 
   function createPageQuiz(event: any) {
     event.preventDefault();
-
+    
     let i = idDataQuiz;
     i++;
     setIdDataQuiz(i);
