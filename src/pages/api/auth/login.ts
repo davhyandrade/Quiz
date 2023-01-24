@@ -35,9 +35,18 @@ export default async function handler(request: NextApiRequest, response: NextApi
     }
 
     try {
+      const token = jwt.sign(
+        {
+          id: user._id,
+          exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7, // 7 days
+        },
+        SECRET
+      );
+
 
       response.status(200).json({
         msg: 'Autenticação realizada com sucesso!',
+        token,
       });
     } catch (error) {
       response.status(500).json({ msg: 'Aconteceu um erro no servidor!' });
