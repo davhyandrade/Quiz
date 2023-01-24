@@ -9,6 +9,12 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
   const { id } = request.query;
 
+  const quiz = await Quiz.findOne({_id: id});
+
+  if (!quiz) {
+    return response.status(422).json({ msg: 'Quiz não encontrado!' });
+  }
+
   switch (method) {
     case 'PUT':
       try {
@@ -30,8 +36,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
       break;
     case 'GET':
       try {
-        const quiz = await Quiz.findOne({_id: id});
-        response.status(200).json({ msg: 'Quiz selecionado com sucesso!!', quiz});
+        response.status(200).json({ msg: 'Quiz selecionado com sucesso!!', quiz });
       } catch (error) {
         response.status(500).json({ msg: 'Aconteceu um erro no servidor!' });
         console.log(error);

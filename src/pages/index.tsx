@@ -35,11 +35,7 @@ const GlobalStyles = createGlobalStyle<IProps>`
 `;
 
 export default function Home() {
-  const { isActiveDialog } = useContext(Context);
-  const { handleOpenDialog } = useContext(Context);
-  const { dataQuiz } = useContext(Context);
-  const { data } = useContext(Context);
-  const { fetchData } = useContext(Context);  
+  const { isActiveDialog, handleOpenDialog, dataQuiz, data, fetchData, isAuth } = useContext(Context);
 
   useEffect(() => {
     fetchData();
@@ -50,17 +46,19 @@ export default function Home() {
       <GlobalStyles isActiveDialog={isActiveDialog} dataQuiz={dataQuiz} />
       <div className="field-quizzes">
         <div className="position">
-          <div className="add-button quiz" onClick={handleOpenDialog}>
-            <Image
-              src="https://i.postimg.cc/ZqDQySGV/vector-add.png"
-              alt="vector add"
-              width={55}
-              height={55}
-              loading="eager"
-              priority
-            />
-            <span>Adicionar Quiz</span>
-          </div>
+          {isAuth &&
+            <div className="add-button quiz" onClick={handleOpenDialog}>
+              <Image
+                src="https://i.postimg.cc/ZqDQySGV/vector-add.png"
+                alt="vector add"
+                width={55}
+                height={55}
+                loading="eager"
+                priority
+              />
+              <span>Adicionar Quiz</span>
+            </div>
+          }
           {data &&
             data.map((item: any) => {
               return (

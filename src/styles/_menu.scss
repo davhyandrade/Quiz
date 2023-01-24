@@ -1,83 +1,101 @@
 .menu {
-    width: 100%;
-    height: 130px;
-    display: flex;
-    justify-content: center;
-    background-color: var(--bg-color);
-    border-bottom: 1px solid var(--color-border);
-    position: relative;
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
 
-    .position {
-        width: 75%;
+  .position {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    justify-content: space-between;
+
+    > img {
+      filter: grayscale(1);
+    }
+
+    > div {
+      position: relative;
+      
+      > a {
+        text-decoration: none;
+        padding: 10px 35px;
+        color: var(--color-text);
+        border-radius: 10px;
+
+        &:nth-child(2) {
+          background-color: var(--bg-panel);
+
+          &:hover {
+            transition: 1s;
+            color: var(--color-text);
+            opacity: 35%;
+          }
+
+          &:active {
+            transition: 0.1s;
+            opacity: 100%;
+            color: var(--color-text);
+          }
+        }
+
+        &:hover {
+          transition: 1s;
+          color: var(--color-primary);
+        }
+
+        &:active {
+          transition: 0.1s;
+          color: var(--color-text);
+        }
+      }
+
+      > span, img {
         display: flex;
         align-items: center;
-        height: 100px;
-        justify-content: space-between;
-
-        > img {
-            filter: grayscale(1);
-        }
-
-        a {
-            text-decoration: none;
-            padding: 10px 35px;
-            color: var(--color-text);
-            border-radius: 10px;
-            
-            &:nth-child(2) {
-                background-color: var(--bg-panel);
-             
-                &:hover {
-                    transition: 1s;
-                    color: var(--color-text);
-                    opacity: 35%;
-                }
-    
-                &:active {
-                    transition: 0.1s;
-                    opacity: 100%;
-                    color: var(--color-text);
-                }
-            }
-
-            &:hover {
-                transition: 1s;
-                color: var(--color-primary);
-            }
-
-            &:active {
-                transition: 0.1s;
-                color: var(--color-text);
-            }
-        }
+        justify-content: center;
+        border-radius: 15px;
+        width: 30px;
+        height: 30px;
+        background-color: #004b3e;
+        cursor: pointer;
+        font-size: 1rem;
+        color: white;
+        object-fit: cover;
+      }
     }
+  }
 
-    .btn-menu {
-        width: 80%;
-        position: absolute;
-        bottom: 10px;
+  .btn-menu {
+    width: 80%;
+    position: absolute;
+    bottom: 10px;
 
-        a {
-            text-decoration: none;
-            color: var(--color-text);
-            font-size: 1rem;
-            padding: 11px 25px;
-            
-            &:hover {
-                transition: 1s;
-                color: var(--color-primary);
-            }
-            
-            &:active {
-                transition: 0.1s;
-                color: var(--color-text);
-                opacity: 50%;
-            }
-        }
-    }
-    
-    #active {
+    a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-size: 1rem;
+      padding: 11px 25px;
+
+      &:hover {
+        transition: 1s;
         color: var(--color-primary);
-        border-bottom: 2px solid var(--color-primary);
+      }
+
+      &:active {
+        transition: 0.1s;
+        color: var(--color-text);
+        opacity: 50%;
+      }
     }
+  }
+
+  #active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+  }
 }

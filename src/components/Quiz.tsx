@@ -21,22 +21,6 @@ const GlobalStyles = createGlobalStyle<IProps>`
 `;
 
 export default function Quiz({ data, handleCloseQuiz }: any) {
-  const progressBar = useRef<any>(null);
-
-  function handleProgressBar() {
-    progressBar.current.classList.remove('active');
-    setTimeout(() => {
-      progressBar.current.classList.add('active');
-    }, 1);
-    setTimeout(() => {
-      return handleNextPage();
-    }, 60 * 1000); //1 min
-  }
-
-  useEffect(() => {
-    handleProgressBar();
-  }, []);
-
   const [isCompletedQuiz, setIsCompletedQuiz] = useState<boolean>(false);
   const [resultQuiz, setResultQuiz] = useState<number>();
 
@@ -56,12 +40,23 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
       return setIsCompletedQuiz(true);
     }
     setIsActivePage(isActivePage + 1);
-    handleProgressBar();
   }
 
   useEffect(() => {
     if (isActivePage !== 0) setIndexQuestionsPageQuiz(0);
     console.log(isActivePage);
+  }, [isActivePage]);
+
+  const progressBar = useRef<any>(null);
+
+  useEffect(() => {
+    progressBar.current.classList.remove('active');
+    setTimeout(() => {
+      progressBar.current.classList.add('active');
+    }, 500);
+    setTimeout(() => {
+      handleNextPage();
+    }, 60 * 1000); //1 min
   }, [isActivePage]);
 
   const [questionAnswer, setQuestionAnswer] = useState<Array<Object>>([{}]);

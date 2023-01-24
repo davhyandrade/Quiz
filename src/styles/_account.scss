@@ -1,0 +1,185 @@
+.account-field {
+  display: flex;
+  justify-content: center;
+  width: 73%;
+
+  > .position {
+    width: 90%;
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+
+    > h1 {
+      font-weight: normal;
+      font-size: 1.4rem;
+      color: var(--color-headings);
+      width: 100%;
+      border-bottom: 1px solid var(--color-border);
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+
+    > span {
+      color: var(--color-text);
+      font-size: 0.9rem;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      label {
+        color: var(--color-text);
+        font-size: 1rem;
+      }
+
+      input {
+        padding: 7px 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: 1px solid var(--color-border);
+        outline-color: var(--color-primary);
+        color: var(--color-text);
+        background-color: var(--bg-color);
+      }
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      bottom: 7vh;
+      cursor: pointer;
+      padding: 10px;
+      width: 150px;
+      border-radius: 5px;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      margin-top: 35px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        transition: 1s;
+        background-color: var(--color-primary);
+        color: var(--color);
+        font-weight: bold;
+      }
+
+      &:active {
+        transition: 1ms;
+        opacity: 20%;
+      }
+    }
+
+    .field-upload {
+      width: 30%;
+      display: flex;
+      flex-direction: initial;
+      align-items: flex-start;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      span {
+        font-size: 0.7rem;
+        color: var(--color-text);
+        text-align: center;
+        width: 70%;
+        margin-bottom: 15px;
+      }
+
+      .field-image {
+        object-fit: cover;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border: 2px dashed var(--color-border);
+        border-radius: 5px;
+        margin-right: 10px;
+        
+        > img {
+          border: 2px dashed var(--color-border);
+          height: 100px;
+          width: 100px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      input[type='file'] {
+        display: none;
+
+        ~ div {
+          min-width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          
+          label {
+            width: 100%;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            background-color: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 7px;
+  
+            &:hover {
+              transition: 1s;
+              background-color: var(--color-primary);
+              color: var(--color);
+              font-weight: bold;
+            }
+  
+            &:active {
+              transition: 1ms;
+              opacity: 20%;
+            }
+          }
+
+          button {
+            width: 100%;
+            margin-top: 0;
+            font-size: 0.9rem;
+            position: initial;
+          }
+        }
+      }
+    }
+
+    .btn-text {
+      cursor: pointer;
+      text-decoration: none;
+      width: 100%;
+      text-align: left;
+      color: var(--color-text);
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+
+      &:hover {
+        transition: 1s;
+        opacity: 100%;
+        color: var(--color-primary);
+      }
+    }
+
+    .btn-delete-account:hover {
+      transition: 1s;
+      opacity: 100%;
+      color: red;
+    } 
+  }
+}

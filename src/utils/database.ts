@@ -4,6 +4,8 @@ const DATABASE_URL = process.env.DATABASE_URL;
 let cache: any;
 
 export const connectDatabase = () => {
+  mongoose.set("strictQuery", true);
+  
   if (cache) {
     console.log('Using existing database connection');
     return Promise.resolve();

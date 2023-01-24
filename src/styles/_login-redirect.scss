@@ -1,0 +1,54 @@
+.login-redirect {
+  min-height: 80vh;
+  min-width: 73%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    margin-bottom: 10px;
+  }
+
+  > h1 {
+    font-weight: normal;
+    font-size: 2rem;
+    color: var(--color-headings);
+    margin-bottom: 15px;
+  }
+
+  > span {
+    color: var(--color-text);
+    font-size: 1rem;
+    width: 22vw;
+    text-align: center;
+  }
+
+  > a {
+    cursor: pointer;
+    padding: 10px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    margin-top: 20px;
+    margin-bottom: 20vh;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transition: 1s;
+      background-color: var(--color-primary);
+      color: var(--color);
+      font-weight: bold;
+    }
+
+    &:active {
+      transition: 1ms;
+      opacity: 20%;
+    }
+  }
+}

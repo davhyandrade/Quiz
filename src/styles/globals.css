@@ -15,7 +15,7 @@ body {
 }
 
 section {
-  min-height: 75vh;
+  min-height: 80vh;
 }
 
 .menu {
@@ -37,32 +37,49 @@ section {
 .menu .position > img {
   filter: grayscale(1);
 }
-.menu .position a {
+.menu .position > div {
+  position: relative;
+}
+.menu .position > div > a {
   text-decoration: none;
   padding: 10px 35px;
   color: var(--color-text);
   border-radius: 10px;
 }
-.menu .position a:nth-child(2) {
+.menu .position > div > a:nth-child(2) {
   background-color: var(--bg-panel);
 }
-.menu .position a:nth-child(2):hover {
+.menu .position > div > a:nth-child(2):hover {
   transition: 1s;
   color: var(--color-text);
   opacity: 35%;
 }
-.menu .position a:nth-child(2):active {
+.menu .position > div > a:nth-child(2):active {
   transition: 0.1s;
   opacity: 100%;
   color: var(--color-text);
 }
-.menu .position a:hover {
+.menu .position > div > a:hover {
   transition: 1s;
   color: var(--color-primary);
 }
-.menu .position a:active {
+.menu .position > div > a:active {
   transition: 0.1s;
   color: var(--color-text);
+}
+.menu .position > div > span, .menu .position > div img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: #004b3e;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .menu .btn-menu {
   width: 80%;
@@ -855,6 +872,9 @@ dialog::backdrop {
   position: absolute;
   left: 0;
 }
+.settings-field > .position > div {
+  min-height: 80vh;
+}
 
 .theme-field {
   display: flex;
@@ -956,17 +976,22 @@ dialog::backdrop {
 }
 
 .notfound-field {
-  min-height: 75vh;
   width: 100%;
+  height: 100vh;
+  background: var(--bg-color);
+  position: fixed;
+  top: 0;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 .notfound-field .div-image {
   width: 800px;
   height: 50vh;
   position: relative;
-  margin-top: 40px;
+  margin-bottom: 20vh;
 }
 .notfound-field .div-image > h1 {
   font-family: "Roboto Slab", serif;
@@ -1214,7 +1239,7 @@ dialog::backdrop {
 }
 .quiz-page > div .header span {
   color: var(--color-text);
-  margin-top: 15px;
+  margin-top: 25px;
 }
 .quiz-page > div .position {
   width: 85%;
@@ -1224,7 +1249,7 @@ dialog::backdrop {
   font-size: 1.1rem;
   font-weight: normal;
   color: var(--color-headings);
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .quiz-page > div .position .questions-field {
   display: flex;
@@ -1359,4 +1384,607 @@ dialog::backdrop {
     width: 100%;
     background-color: orangered;
   }
+}
+.form-login {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.form-login form {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20vh;
+}
+@media only screen and (max-width: 800px) {
+  .form-login form {
+    width: 85%;
+  }
+}
+.form-login form h1 {
+  font-size: 2rem;
+  color: var(--color-headings);
+  font-weight: normal;
+  margin-top: 20px;
+  opacity: 90%;
+}
+.form-login form h1 span {
+  font-weight: bolder;
+  font-size: 2.2rem;
+}
+.form-login form > p {
+  color: var(--color-text);
+  margin-bottom: 60px;
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+@media only screen and (max-width: 800px) {
+  .form-login form > p {
+    font-size: 0.9rem;
+  }
+}
+.form-login form > p a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+.form-login form > p a:hover {
+  transition: 1s;
+  opacity: 50%;
+  text-decoration: underline;
+}
+.form-login form > p a:active {
+  transition: 0.1s;
+  opacity: 100%;
+  text-decoration: none;
+}
+.form-login form > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+.form-login form > div:nth-child(3) {
+  margin-bottom: 45px;
+}
+.form-login form > div label {
+  position: absolute;
+  top: 0;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+.form-login form > div input {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: 5px;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--color-headings);
+}
+.form-login form > div input + label {
+  transform: translateY(-20px);
+  font-size: 0.9rem;
+}
+.form-login form > div input:-moz-placeholder-shown + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+.form-login form > div input:-ms-input-placeholder + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+.form-login form > div input:placeholder-shown + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+.form-login form > div input::-moz-placeholder {
+  visibility: hidden;
+}
+.form-login form > div input:-ms-input-placeholder {
+  visibility: hidden;
+}
+.form-login form > div input::placeholder {
+  visibility: hidden;
+}
+.form-login form > div input:focus {
+  transition: 1s;
+  border-bottom: 1px solid var(--color-primary);
+}
+.form-login form > div input:focus + label {
+  transition: 0.5s;
+  transform: translateY(-20px);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+.form-login form > div svg {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  opacity: 40%;
+}
+.form-login form > div svg:hover {
+  transition: 1s;
+  background: rgba(255, 255, 255, 0.1);
+}
+.form-login form > a {
+  margin-top: 25px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  opacity: 70%;
+}
+.form-login form > a:hover {
+  transition: 1s;
+  opacity: 100%;
+  color: var(--color-primary);
+}
+.form-login form input[type=submit] {
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  margin-bottom: 40px;
+}
+.form-login form input[type=submit]:hover {
+  transition: 1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+  font-weight: bold;
+}
+.form-login form input[type=submit]:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+
+.form-register {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.form-register form {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15vh;
+}
+@media only screen and (max-width: 800px) {
+  .form-register form {
+    width: 85%;
+  }
+}
+.form-register form h1 {
+  font-size: 2rem;
+  color: var(--color-headings);
+  font-weight: normal;
+  margin-top: 20px;
+  text-align: center;
+  opacity: 90%;
+}
+@media only screen and (max-width: 800px) {
+  .form-register form h1 {
+    font-size: 1.5rem;
+  }
+}
+.form-register form h1 span {
+  font-weight: bolder;
+  font-size: 2.2rem;
+}
+@media only screen and (max-width: 800px) {
+  .form-register form h1 span {
+    font-size: 1.7rem;
+  }
+}
+.form-register form > p {
+  color: var(--color-text);
+  margin-bottom: 60px;
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+.form-register form > p a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+.form-register form > p a:hover {
+  transition: 1s;
+  opacity: 50%;
+  text-decoration: underline;
+}
+.form-register form > p a:active {
+  transition: 0.1s;
+  opacity: 100%;
+  text-decoration: none;
+}
+.form-register form > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.form-register form > div .container-input {
+  width: 48%;
+}
+.form-register form .container-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 45px;
+}
+.form-register form .container-input label {
+  position: absolute;
+  top: 0;
+  font-size: 1.05rem;
+  color: var(--color-text);
+}
+.form-register form .container-input input {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: 5px;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--color-headings);
+}
+.form-register form .container-input input + label {
+  transform: translateY(-20px);
+  font-size: 0.9rem;
+}
+.form-register form .container-input input:-moz-placeholder-shown + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+.form-register form .container-input input:-ms-input-placeholder + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+.form-register form .container-input input:placeholder-shown + label {
+  transform: translateY(0);
+  font-size: 1rem;
+}
+.form-register form .container-input input::-moz-placeholder {
+  visibility: hidden;
+}
+.form-register form .container-input input:-ms-input-placeholder {
+  visibility: hidden;
+}
+.form-register form .container-input input::placeholder {
+  visibility: hidden;
+}
+.form-register form .container-input input:focus {
+  transition: 1s;
+  border-bottom: 1px solid var(--color-primary);
+}
+.form-register form .container-input input:focus + label {
+  transition: 0.5s;
+  transform: translateY(-20px);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+.form-register form .container-input svg {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  opacity: 40%;
+}
+.form-register form .container-input svg:hover {
+  transition: 1s;
+  background: rgba(255, 255, 255, 0.1);
+}
+.form-register form input[type=submit] {
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  margin-bottom: 40px;
+}
+.form-register form input[type=submit]:hover {
+  transition: 1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+  font-weight: bold;
+}
+.form-register form input[type=submit]:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+
+.dropdown {
+  width: 170px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background-color: var(--bg-color);
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+  z-index: 99;
+}
+.dropdown > span, .dropdown > a {
+  width: 100%;
+  display: flex;
+  padding: 7px 20px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.dropdown > span:hover, .dropdown > a:hover {
+  transition: 2s;
+  background-color: var(--color-primary);
+  color: var(--bg-color);
+}
+.dropdown > span:active, .dropdown > a:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+.dropdown .header {
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-headings);
+  cursor: default;
+}
+.dropdown .header:hover {
+  background-color: var(--bg-color);
+  color: var(--color-headings);
+}
+.dropdown .header:active {
+  opacity: 100%;
+}
+.dropdown .log-out {
+  border-top: 1px solid var(--color-border);
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+.login-redirect {
+  min-height: 80vh;
+  min-width: 73%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.login-redirect img {
+  margin-bottom: 10px;
+}
+.login-redirect > h1 {
+  font-weight: normal;
+  font-size: 2rem;
+  color: var(--color-headings);
+  margin-bottom: 15px;
+}
+.login-redirect > span {
+  color: var(--color-text);
+  font-size: 1rem;
+  width: 22vw;
+  text-align: center;
+}
+.login-redirect > a {
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  margin-top: 20px;
+  margin-bottom: 20vh;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-redirect > a:hover {
+  transition: 1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+  font-weight: bold;
+}
+.login-redirect > a:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+
+.account-field {
+  display: flex;
+  justify-content: center;
+  width: 73%;
+}
+.account-field > .position {
+  width: 90%;
+  margin-top: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.account-field > .position > h1 {
+  font-weight: normal;
+  font-size: 1.4rem;
+  color: var(--color-headings);
+  width: 100%;
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+.account-field > .position > span {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+.account-field > .position > div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.account-field > .position > div label {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+.account-field > .position > div input {
+  padding: 7px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  outline-color: var(--color-primary);
+  color: var(--color-text);
+  background-color: var(--bg-color);
+}
+.account-field > .position button {
+  position: absolute;
+  right: 0;
+  bottom: 7vh;
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  margin-top: 35px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account-field > .position button:hover {
+  transition: 1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+  font-weight: bold;
+}
+.account-field > .position button:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+.account-field > .position .field-upload {
+  width: 30%;
+  display: flex;
+  flex-direction: initial;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.account-field > .position .field-upload span {
+  font-size: 0.7rem;
+  color: var(--color-text);
+  text-align: center;
+  width: 70%;
+  margin-bottom: 15px;
+}
+.account-field > .position .field-upload .field-image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 2px dashed var(--color-border);
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.account-field > .position .field-upload .field-image > img {
+  border: 2px dashed var(--color-border);
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.account-field > .position .field-upload input[type=file] {
+  display: none;
+}
+.account-field > .position .field-upload input[type=file] ~ div {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.account-field > .position .field-upload input[type=file] ~ div label {
+  width: 100%;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+.account-field > .position .field-upload input[type=file] ~ div label:hover {
+  transition: 1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+  font-weight: bold;
+}
+.account-field > .position .field-upload input[type=file] ~ div label:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+.account-field > .position .field-upload input[type=file] ~ div button {
+  width: 100%;
+  margin-top: 0;
+  font-size: 0.9rem;
+  position: initial;
+}
+.account-field > .position .btn-text {
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+.account-field > .position .btn-text:hover {
+  transition: 1s;
+  opacity: 100%;
+  color: var(--color-primary);
+}
+.account-field > .position .btn-delete-account:hover {
+  transition: 1s;
+  opacity: 100%;
+  color: red;
 }/*# sourceMappingURL=globals.css.map */

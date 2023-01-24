@@ -1,12 +1,18 @@
 import Link from 'next/link';
+import { useContext } from 'react';
+import { Context } from '../context/layout';
 
 export default function Footer() {
+  const { setIsActiveButtonMenu, isAuth } = useContext(Context);
+
   return (
     <footer>
       <div>
         <div> 
           <a onClick={() => window.scrollTo(0, 0)}>Inicio</a>
-          <Link href="/login">Entrar</Link>
+          {!isAuth &&
+            <Link onClick={() => setIsActiveButtonMenu(-1)} href="/login">Entrar</Link>
+          }
         </div>
         <div>
           <Link href="https://github.com/davhyandrade">

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "18.11.10",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
@@ -16,7 +17,9 @@
     "cloudinary": "^1.33.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "jsonwebtoken": "^9.0.0",
     "next": "13.0.5",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-toastify": "^9.1.1",
@@ -24,8 +27,10 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/mongoose": "^5.11.97",
     "@types/styled-components": "^5.1.26",
+    "bcrypt": "^5.1.0",
     "mongoose": "^6.8.0"
   }
 }

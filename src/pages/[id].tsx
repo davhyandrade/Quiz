@@ -18,8 +18,7 @@ const GlobalStyles = createGlobalStyle<IProps>`
 `;
 
 export default function Quizzes() {
-  const { quiz } = useContext(Context);
-  const { setQuiz } = useContext(Context);
+  const { quiz, setQuiz } = useContext(Context);
   const Router = useRouter();
 
   let id = Router.query.id;

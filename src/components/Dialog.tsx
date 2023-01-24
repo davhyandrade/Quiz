@@ -3,22 +3,14 @@ import { Context } from '../context/layout';
 import Image from 'next/image';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { parseCookies } from 'nookies';
 
 export default function Dialog() {
-  const { handleCloseDialog } = useContext(Context);
-  const { inputDescriptionQuiz }: any = useContext(Context);
-  const { inputTitleQuiz }: any = useContext(Context);
-  const { inputQuestionsQuiz }: any = useContext(Context);
-  const { inputStatementQuiz }: any = useContext(Context);
-  const { inputImageQuiz }: any = useContext(Context);
-  const { dialog } = useContext(Context);
+  const { inputDescriptionQuiz, inputTitleQuiz, inputQuestionsQuiz, inputStatementQuiz, inputImageQuiz }: any =
+    useContext(Context);
 
-  const { setDataQuiz } = useContext(Context);
-  const { dataQuiz } = useContext(Context);
-
-  const { setIsLoadingModal, isLoadingModal } = useContext(Context);
-  
-  const { fetchData } = useContext(Context);
+  const { handleCloseDialog, dialog, setDataQuiz, dataQuiz, setIsLoadingModal, isLoadingModal, fetchData, user } =
+    useContext(Context);
 
   async function handleForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,7 +21,7 @@ export default function Dialog() {
         setIsLoadingModal(false);
         return toast.error('Realize o Upload de uma Imagem!!', {
           theme: 'colored',
-        }); 
+        });
       }
 
       if (dataQuiz.length === 1) {
@@ -38,46 +30,56 @@ export default function Dialog() {
           theme: 'colored',
         });
       }
-  
-      let data = dataQuiz.map((item: any) => item.data).slice(1, dataQuiz.map((item: any) => item.data).length)
-      let i = 0
 
-      while (i <= data.length-1) {
+      let data = dataQuiz.map((item: any) => item.data).slice(1, dataQuiz.map((item: any) => item.data).length);
+      let i = 0;
+
+      while (i <= data.length - 1) {
         if (typeof data[i].statement === 'undefined' || data[i].statement === '') {
           setIsLoadingModal(false);
           return toast.error('Alguma página está sem o enunciado!!', {
             theme: 'colored',
           });
-        } 
+        }
 
         if (typeof data[i].questions === 'undefined' || data[i].questions === '') {
           setIsLoadingModal(false);
           return toast.error('Alguma página está sem questão!!', {
             theme: 'colored',
           });
-        } 
+        }
 
         if (typeof data[i].response === 'undefined' || data[i].response === '') {
           setIsLoadingModal(false);
           return toast.error('Alguma página está sem resposta!!', {
             theme: 'colored',
           });
-        } 
-        i++
-      }   
-      
+        }
+        i++;
+      }
+
       const imageURL = await axios.post('api/image.upload', {
         imageBase64: previewSource,
         preset: 'quiz-images-uploads',
       });
 
-      const createQuiz = await axios.post('api/quiz', {
-        title: inputTitleQuiz.current.value,
-        description: inputDescriptionQuiz.current.value,
-        image: imageURL.data.uploadResponse.url,
-        creator: 'Davhy Andrade',
-        pages: dataQuiz.slice(1, dataQuiz.length),
-      });
+      const { token }: any = parseCookies();
+
+      const createQuiz = await axios.post('api/quiz',
+        {
+          title: inputTitleQuiz.current.value,
+          description: inputDescriptionQuiz.current.value,
+          image: imageURL.data.uploadResponse.url,
+          creator: user.name,
+          pages: dataQuiz.slice(1, dataQuiz.length),
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
       handleCloseDialog();
       setIsLoadingModal(false);
       fetchData();
@@ -88,6 +90,7 @@ export default function Dialog() {
       toast.error(error.response.data.msg, {
         theme: 'colored',
       });
+      setIsLoadingModal(false);
       console.log(error);
     }
   }
@@ -95,7 +98,7 @@ export default function Dialog() {
   function handleKeyPressDialog(event: any) {
     if (event.key === 'Escape') {
       handleCloseDialog();
-    } 
+    }
   }
 
   const { setPreviewSource, previewSource } = useContext(Context);
@@ -104,6 +107,7 @@ export default function Dialog() {
     const reader: any = new FileReader();
 
     if (file) reader.readAsDataURL(file);
+
     reader.onloadend = () => {
       setPreviewSource(reader.result);
     };
@@ -189,7 +193,7 @@ export default function Dialog() {
 
   function createPageQuiz(event: any) {
     event.preventDefault();
-    
+
     let i = idDataQuiz;
     i++;
     setIdDataQuiz(i);

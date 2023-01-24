@@ -8,6 +8,8 @@ import axios from 'axios';
 import Footer from '../components/Footer';
 import Router from 'next/router';
 import Quiz from '../components/Quiz';
+import { destroyCookie, parseCookies } from 'nookies';
+import jwt from 'jsonwebtoken';
 
 interface IContext {
   handlePageLoaded?: any;
@@ -40,6 +42,15 @@ interface IContext {
   idDataQuiz?: any;
   setIsLoadingModal?: any;
   isLoadingModal?: any;
+  isAuth?: boolean;
+  setIsAuth?: any;
+  fetchDataUser?: any;
+  user?: any;
+  buttonsMenu?: any;
+  setIsActiveButtonMenu?: any;
+  isActiveButtonMenu?: number;
+  setIsActiveDropdown?: any;
+  isActiveDropdown?: boolean;
 }
 
 export const Context = createContext<IContext>({});
@@ -49,6 +60,38 @@ type ComponentProps = {
 };
 
 export default function Layout({ children }: ComponentProps) {
+  const [user, setUser] = useState<object | null>(null);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+
+  async function fetchDataUser() {
+    const { token }: any = parseCookies();
+
+    if (token) {
+      try {
+        const requestUser = await axios.get(`/api/auth/user/${(jwt.decode(token) as any).id}`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(requestUser.data.user);
+        setIsAuth(true);
+        handlePageLoaded();
+      } catch (error: any) {
+        destroyCookie(undefined, 'token');
+        toast.error(error.response.data.msg, {
+          theme: 'colored',
+        });
+        console.log(error);
+      }
+    }
+
+    if (!isAuth) handlePageLoaded();
+  }
+
+  useEffect(() => {
+    fetchDataUser();
+  }, []);
+
   const [isActiveLoading, setIsActiveLoading] = useState<boolean>(true);
   const [isVisiblePage, setIsVisiblePage] = useState<boolean>(false);
 
@@ -82,7 +125,8 @@ export default function Layout({ children }: ComponentProps) {
   };
 
   useEffect(() => {
-    if (Router.pathname !== '/') handlePageLoaded();
+    if (Router.pathname !== '/' && Router.pathname !== '/settings/account' && Router.pathname !== '/edit')
+      handlePageLoaded();
   }, []);
 
   const [isActiveDialog, setIsActiveDialog] = useState<boolean>(false);
@@ -102,7 +146,7 @@ export default function Layout({ children }: ComponentProps) {
 
   const [isLoadingModal, setIsLoadingModal] = useState<boolean>(false);
   const [idDataQuiz, setIdDataQuiz] = useState<number>(1);
-  const [previewSource, setPreviewSource] = useState<string>();
+  const [previewSource, setPreviewSource] = useState();
 
   function handleCloseDialog() {
     inputTitleQuiz.current.value = '';
@@ -113,6 +157,7 @@ export default function Layout({ children }: ComponentProps) {
     }
     setIsActiveDialog(false);
     setPreviewSource(undefined);
+    inputImageQuiz.current.value = '';
     setDataQuiz([{}]);
     setIdDataQuiz(1);
     dialog.current.close();
@@ -139,6 +184,25 @@ export default function Layout({ children }: ComponentProps) {
   function handleCloseQuiz() {
     setIsActiveQuiz(false);
   }
+
+  const [isActiveButtonMenu, setIsActiveButtonMenu] = useState<number>(0);
+
+  const buttonsMenu = [
+    {
+      name: 'Home',
+      url: '/',
+    },
+    {
+      name: 'Edit',
+      url: '/edit',
+    },
+    {
+      name: 'Settings',
+      url: '/settings/account',
+    },
+  ];
+
+  const [isActiveDropdown, setIsActiveDropdown] = useState<boolean>(false);
 
   return (
     <>
@@ -177,6 +241,15 @@ export default function Layout({ children }: ComponentProps) {
             idDataQuiz,
             setIsLoadingModal,
             isLoadingModal,
+            isAuth,
+            setIsAuth,
+            fetchDataUser,
+            user,
+            buttonsMenu,
+            setIsActiveButtonMenu,
+            isActiveButtonMenu,
+            setIsActiveDropdown,
+            isActiveDropdown
           }}
         >
           <Menu />

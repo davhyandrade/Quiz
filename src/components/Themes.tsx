@@ -20,7 +20,11 @@ const GlobalStyles = createGlobalStyle<IProps>`
       --color2: white;
       --color-opposite: rgba(0, 0, 0, 0.7);
       --bg-description: #cdcdcd;
-      }`}
+      }
+      
+    #btn-login-redirect {
+      filter: hue-rotate(341deg) opacity(0.8) grayscale(0.9);
+    }`}
   ${(props) =>
     props.isActiveThemeDarkOrLight === 'dark' &&
     `:root {
@@ -56,6 +60,10 @@ const GlobalStyles = createGlobalStyle<IProps>`
       filter: invert(1);
     }
     
+    #btn-login-redirect {
+      filter: contrast(0.5) grayscale(0.8);
+    }
+
     .field-quizzes > .position .add-button {
       &:hover {
         > img {
