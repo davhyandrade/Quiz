@@ -43,6 +43,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
         SECRET
       );
 
+      response.setHeader('authorization', `Bearer ${token}`);
 
       response.status(200).json({
         msg: 'Autenticação realizada com sucesso!',
