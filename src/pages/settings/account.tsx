@@ -7,6 +7,7 @@ import { Context } from '../../context/layout';
 import jwt from 'jsonwebtoken';
 import { toast } from 'react-toastify';
 import { createGlobalStyle } from 'styled-components';
+import Link from 'next/link';
 
 interface IProps {
   firstDeleteAccount: boolean;
@@ -21,7 +22,7 @@ const GlobalStyles = createGlobalStyle<IProps>`
 `;
 
 export default function Account() {
-  const { isAuth, setIsAuth, fetchDataUser, user } = useContext(Context);
+  const { isAuth, setIsAuth, fetchDataUser, user, setIsActiveButtonMenu } = useContext(Context);
 
   useEffect(() => {
     fetchDataUser();
@@ -55,7 +56,11 @@ export default function Account() {
   async function handleSaveChange() {
     setIsLoadingSaveChange(true);
 
-    let image = '';
+    let image = user.image;
+
+    if (resetProfilePicture) {
+      image = '';
+    }
 
     if (hadChangePreviewSource) {
       const imageURL = await axios.post('/api/image.upload', {
@@ -89,10 +94,12 @@ export default function Account() {
             theme: 'colored',
           });
           setIsLoadingSaveChange(false);
+          setResetProfilePicture(false);
           fetchDataUser();
         }
       } catch (error: any) {
         setIsLoadingSaveChange(false);
+        setResetProfilePicture(false);
         destroyCookie(undefined, 'token');
         toast.error(error.response.data.msg, {
           theme: 'colored',
@@ -102,7 +109,10 @@ export default function Account() {
     }
   }
 
+  const [resetProfilePicture, setResetProfilePicture] = useState<boolean>(false); 
+
   function handleReset() {
+    setResetProfilePicture(true);
     setIsVisibleProfilePicture(false);
     setHadChangePreviewSource(false);
     user.image = undefined;
@@ -191,7 +201,7 @@ export default function Account() {
                       )}
                     </div>
                   </div>
-                  <span className="btn-text">Change Password</span>
+                  <Link onClick={() => setIsActiveButtonMenu(-1)} href='/forgot-password' className="btn-text">Change Password</Link>
                   <span onClick={handleDeleteAccount} className="btn-text btn-delete-account">
                     {!firstDeleteAccount ? 'Delete account' : 'Press again to confirm'}
                   </span>

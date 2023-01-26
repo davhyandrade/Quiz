@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { createGlobalStyle } from 'styled-components';
 import { Context } from '../context/layout';

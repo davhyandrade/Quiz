@@ -125,7 +125,7 @@ export default function Layout({ children }: ComponentProps) {
   };
 
   useEffect(() => {
-    if (Router.pathname !== '/' && Router.pathname !== '/settings/account' && Router.pathname !== '/edit')
+    if (Router.pathname !== '/' && Router.pathname !== '/settings/account' && Router.pathname !== '/edit' && Router.pathname !== '/forgot-password')
       handlePageLoaded();
   }, []);
 

@@ -30,7 +30,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 
       response.status(200).json({ msg: 'Imagem carregada com sucesso!!', uploadResponse });
     } catch (error) {
-      response.status(500).json({ msg: 'Aconteceu um erro no servidor!', error });
+      response.status(500).json({ msg: 'Aconteceu um erro no servidor!' });
       console.log(error);
     }
   }

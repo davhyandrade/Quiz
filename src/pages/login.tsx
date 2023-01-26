@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Image from 'next/image';
 import Link from 'next/link';
 import Router from 'next/router';
 import { FormEvent, useContext, useRef, useState } from 'react';
@@ -8,6 +7,8 @@ import { Context } from '../context/layout';
 import { toast } from 'react-toastify';
 
 export default function Login() {
+  const { fetchDataUser, setIsActiveButtonMenu }: any = useContext(Context);
+
   const inputEmail = useRef<any>(null);
   const inputSenha = useRef<any>(null);
 
@@ -45,8 +46,6 @@ export default function Login() {
   }
 
   const [isActiveButtonSubmit, setIsActiveButtonSubmit] = useState<boolean>(false);
-
-  const { fetchDataUser }: any = useContext(Context);
 
   async function handleLoginUser(event: FormEvent) {
     event.preventDefault();
@@ -87,8 +86,8 @@ export default function Login() {
           Primeira vez? <Link href="/register">Registre-se</Link> gratuitamente
         </p>
         <div>
-          <input ref={inputEmail} id="email" name="email" type="Email" placeholder="Email" required />
-          <label htmlFor="email">E-mail</label>
+            <input ref={inputEmail} id="email" name="email" type="Email" placeholder="Email" required />
+            <label htmlFor="email">E-mail</label>
         </div>
         <div>
           <input
@@ -113,7 +112,7 @@ export default function Login() {
             {imageEyePassword}
           </svg>
         </div>
-        <Link href="/forgot-password">Forgot password</Link>
+        <Link onClick={() => setIsActiveButtonMenu(-1)} href="/forgot-password">Forgot password</Link>
         <input type="submit" value={isActiveButtonSubmit ? 'Entering...' : 'To Enter'} />
       </form>
     </div>
