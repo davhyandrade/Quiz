@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 import { FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Context } from '../context/layout';
@@ -24,20 +25,23 @@ export default function ForgotPassword() {
 
   async function handleNewPassword(event: FormEvent) {
     event.preventDefault();
+    setIsActiveButtonSubmit(true);
     try {
       const updateUser = await axios.put(`/api/auth/forgot.password`, {
         email: emailUser,
         password: inputNewPassword.current.value,
-      })
-      toast.success(updateUser.data.msg, {
-        theme: 'colored', 
       });
+      toast.success(updateUser.data.msg, {
+        theme: 'colored',
+      });
+      Router.push('/login');
     } catch (error: any) {
       toast.error(error.response.data.msg, {
         theme: 'colored',
       });
       console.log(error);
     }
+    setIsActiveButtonSubmit(false);
   }
 
   function formSubmit(event: FormEvent<HTMLFormElement>) {
@@ -110,10 +114,12 @@ export default function ForgotPassword() {
   useEffect(() => {
     if (verifyIsAuth) {
       fetchDataUser();
-      setTimeout(() => {
-        handleGenerateCode();
-        inputNumber1.current.focus();
-      }, 2500);
+      if (!isActiveNewPassword) {
+        setTimeout(() => {
+          handleGenerateCode();
+          inputNumber1.current.focus();
+        }, 2500);
+      }
     }
   }, [verifyIsAuth]);
 
@@ -133,7 +139,7 @@ export default function ForgotPassword() {
       return event.preventDefault();
     }
     if (event.key === 'Backspace' && event.target.value.length === 0) {
-      switch (event.target.ijd) {
+      switch (event.target.id) {
         case '1':
           return;
         case '2':
@@ -154,7 +160,7 @@ export default function ForgotPassword() {
       }
     }
     if (event.key === 'ArrowRight') {
-      switch (event.target.ijd) {
+      switch (event.target.id) {
         case '1':
           inputNumber2.current.focus();
           break;
@@ -175,7 +181,7 @@ export default function ForgotPassword() {
       }
     }
     if (event.key === 'ArrowLeft') {
-      switch (event.target.ijd) {
+      switch (event.target.id) {
         case '1':
           break;
         case '2':
