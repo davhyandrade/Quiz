@@ -2020,6 +2020,13 @@ dialog::backdrop {
   font-size: 1rem;
   text-align: center;
 }
+.forgot-password-field form > span:nth-child(4) {
+  width: 100%;
+  text-align: left;
+  font-size: 0.7rem;
+  margin: 0;
+  margin-bottom: 35px;
+}
 .forgot-password-field form > span > span {
   font-weight: bolder;
   font-size: 1.1rem;
@@ -2033,7 +2040,7 @@ dialog::backdrop {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   position: relative;
 }
 .forgot-password-field form > div input[type=number] {
@@ -2148,6 +2155,7 @@ dialog::backdrop {
 .forgot-password-field form .div-input {
   display: flex;
   flex-direction: column;
+  margin-bottom: 35px;
 }
 .forgot-password-field form input[type=submit] {
   border-radius: 5px;

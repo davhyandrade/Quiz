@@ -64,6 +64,9 @@ export default function ForgotPassword() {
     );
     if (code === codeVerify) {
       setIsActiveNewPassword(true);
+      setTimeout(() => {
+        inputNewPassword.current.value = '';
+      }, 0);
     } else {
       toast.error('Código incorreto!!', {
         theme: 'colored',
@@ -114,6 +117,9 @@ export default function ForgotPassword() {
   useEffect(() => {
     if (verifyIsAuth) {
       fetchDataUser();
+      if (isAuth) {
+        setEmailUser(user.email);
+      }
       if (!isActiveNewPassword) {
         setTimeout(() => {
           handleGenerateCode();
@@ -123,39 +129,74 @@ export default function ForgotPassword() {
     }
   }, [verifyIsAuth]);
 
-  useEffect(() => {
-    if (isAuth) {
-      setEmailUser(user.email);
-    }
-  }, []);
-
   function handleKeyDownInputs(event: any) {
     if (
       event.target.value.length >= 1 &&
       event.key !== 'Backspace' &&
       event.key !== 'Enter' &&
-      event.key !== 'ArrowRight'
+      event.key !== 'ArrowRight' &&
+      event.key !== 'ArrowLeft'
     ) {
-      return event.preventDefault();
-    }
-    if (event.key === 'Backspace' && event.target.value.length === 0) {
       switch (event.target.id) {
         case '1':
-          return;
+          inputNumber2.current.focus();
+          inputNumber2.current.value = event.key;
+          break;
         case '2':
-          inputNumber1.current.focus();
+          inputNumber3.current.focus();
+          inputNumber3.current.value = event.key;
           break;
         case '3':
-          inputNumber2.current.focus();
+          inputNumber4.current.focus();
+          inputNumber4.current.value = event.key;
           break;
         case '4':
-          inputNumber3.current.focus();
+          inputNumber5.current.focus();
+          inputNumber5.current.value = event.key;
           break;
         case '5':
-          inputNumber4.current.focus();
+          inputNumber6.current.focus();
+          inputNumber6.current.value = event.key;
           break;
         case '6':
-          inputNumber5.current.focus();
+          break;
+      }
+      return event.preventDefault();
+    }
+    if (event.key === 'Backspace') {
+      switch (event.target.id) {
+        case '1':
+          if (event.target.value.length !== 0) inputNumber1.current.value = '';
+          return;
+        case '2':
+          setTimeout(() => { 
+            inputNumber1.current.focus();
+            inputNumber2.current.value = '';
+          });
+          break;
+        case '3':
+          setTimeout(() => { 
+            inputNumber2.current.focus();
+            inputNumber3.current.value = '';
+          });
+          break;
+        case '4':
+          setTimeout(() => { 
+            inputNumber3.current.focus();
+            inputNumber4.current.value = '';
+          });
+          break;
+        case '5':
+          setTimeout(() => { 
+            inputNumber4.current.focus();
+            inputNumber5.current.value = '';
+          });
+          break;
+        case '6':
+          setTimeout(() => { 
+            inputNumber5.current.focus();
+            inputNumber6.current.value = '';
+          });
           break;
       }
     }
@@ -250,6 +291,7 @@ export default function ForgotPassword() {
               id="password"
               name="password"
               type="password"
+              defaultValue="oi"
               placeholder="Password"
               required
             />
@@ -283,6 +325,7 @@ export default function ForgotPassword() {
                   ref={inputNumber1}
                   onKeyDown={handleKeyDownInputs}
                   type="number"
+                  name="number"
                   id="1"
                   placeholder="0"
                   required
@@ -291,6 +334,7 @@ export default function ForgotPassword() {
                   ref={inputNumber2}
                   onKeyDown={handleKeyDownInputs}
                   type="number"
+                  name="number"
                   id="2"
                   placeholder="0"
                   required
@@ -299,6 +343,7 @@ export default function ForgotPassword() {
                   ref={inputNumber3}
                   onKeyDown={handleKeyDownInputs}
                   type="number"
+                  name="number"
                   id="3"
                   placeholder="0"
                   required
@@ -307,6 +352,7 @@ export default function ForgotPassword() {
                   ref={inputNumber4}
                   onKeyDown={handleKeyDownInputs}
                   type="number"
+                  name="number"
                   id="4"
                   placeholder="0"
                   required
@@ -315,6 +361,7 @@ export default function ForgotPassword() {
                   ref={inputNumber5}
                   onKeyDown={handleKeyDownInputs}
                   type="number"
+                  name="number"
                   id="5"
                   placeholder="0"
                   required
@@ -323,11 +370,13 @@ export default function ForgotPassword() {
                   ref={inputNumber6}
                   onKeyDown={handleKeyDownInputs}
                   type="number"
+                  name="number"
                   id="6"
                   placeholder="0"
                   required
                 />
               </div>
+              <span>Para gerar outro código basta atualizar a página</span>
               <input type="submit" value={isActiveButtonSubmit ? 'Verifying...' : 'Verify'} />
             </>
           ) : (
