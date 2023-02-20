@@ -37,7 +37,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
         `,
       });
 
-      response.status(200).json({ msg: 'Email enviado com sucesso!!', info });
+      response.status(200).json({ msg: 'Código enviado para o seu E-mail!', info });
     } catch (error) {
       response.status(500).json({ msg: 'Aconteceu um erro no servidor!', error, pass: process.env.PASSMAIL, email: process.env.USERMAIL });
       console.log(error);

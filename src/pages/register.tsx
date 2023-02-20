@@ -139,7 +139,7 @@ export default function Register() {
               placeholder="Senha"
               required
             />
-            <label htmlFor="confirm-password">Repeat the Password</label>
+            <label htmlFor="confirm-password">{window.matchMedia('(max-width: 800px)') ? 'Repeat' : 'Repeat the Password'}</label>
             <svg
               onClick={() => handleClick(inputConfirmaSenha.current.name)}
               version="1.0"

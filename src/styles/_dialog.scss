@@ -8,18 +8,19 @@ dialog {
   border-radius: 15px;
   border: 1px solid var(--color-border);
   position: relative;
-  
+  z-index: 99;
+
   &::-webkit-scrollbar {
     width: 10px;
     border: none;
   }
-  
+
   &::-webkit-scrollbar-track {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: var(--bg-color);
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: var(--bg-panel);
     border-top-right-radius: 30px;
@@ -31,9 +32,10 @@ dialog {
     & {
       margin: -175px -47.5%;
       min-width: 95%;
+      top: 35%;
     }
   }
-  
+
   .position {
     width: 100%;
     display: flex;
@@ -97,18 +99,35 @@ dialog {
         margin-bottom: 25px;
       }
 
-
       > div:nth-child(2) {
         display: flex;
         justify-content: space-between;
         width: 100%;
 
+        @media only screen and (max-width: 800px) {
+          & {
+            flex-direction: column;
+          }
+        }
+        
         > div:nth-child(1) {
           width: 55%;
+          
+          @media only screen and (max-width: 800px) {
+            & {
+              width: 100%;
+            }
+          }
         }
-
+        
         > div:nth-child(2) {
           width: 40%;
+
+          @media only screen and (max-width: 800px) {
+            & {
+              width: 100%;
+            }
+          }
         }
       }
 
@@ -137,24 +156,24 @@ dialog {
             right: 32px;
             cursor: pointer;
             width: 20px;
-            
+
             &:checked {
-              animation: boom .2s ease-in;
+              animation: boom 0.2s ease-in;
               animation-iteration-count: 1;
             }
           }
 
           @keyframes boom {
             0% {
-              opacity: .2;
+              opacity: 0.2;
               transform: scale(1.5);
             }
 
             90% {
-              opacity: .01;
+              opacity: 0.01;
               transform: scale(3);
             }
-          
+
             100% {
               transform: none;
             }
@@ -185,7 +204,7 @@ dialog {
           color: var(--color-text);
         }
 
-        input[type="text"] {
+        input[type='text'] {
           border: none;
           border-bottom: 2px solid var(--color-text);
           padding: 5px;
@@ -198,7 +217,7 @@ dialog {
             transform: translateY(-20px);
             font-size: 0.9rem;
           }
-          
+
           &:placeholder-shown + label {
             transform: translateY(0);
             font-size: 1rem;
@@ -221,19 +240,32 @@ dialog {
           }
         }
       }
-      
+
       .field-upload {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 25px;
         
+        @media only screen and (max-width: 800px) {
+          & {
+            margin-top: 0;
+          }
+        }
+
         span {
           font-size: 0.7rem;
           color: var(--color-text);
           text-align: center;
           width: 70%;
           margin-bottom: 15px;
+          
+          @media only screen and (max-width: 800px) {
+            & {
+              font-size: 0.8rem;
+              margin-bottom: 20px;
+            }
+          }
         }
 
         .field-image {
@@ -246,7 +278,7 @@ dialog {
           border: 2px dashed var(--color-border);
           border-radius: 5px;
           margin-bottom: 10px;
-          
+
           > img {
             width: 100%;
             max-height: 200px;
@@ -255,35 +287,35 @@ dialog {
           }
         }
 
-        input[type="file"] {
-         display: none;
+        input[type='file'] {
+          display: none;
 
-         & ~ label {
-          background-color: var(--bg-panel);
-          padding: 7px 25px;
-          cursor: pointer;
-          border: 2px solid var(--bg-panel);
-          color: var(--color-headings);
-          border-radius: 5px;
-          font-size: 1rem;
-          position: static;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-  
-          &:hover {
-            transition: 1s;
-            background-color: transparent;
-            border: 2px solid var(--color-primary);
-            color: var(--color-primary);
+          & ~ label {
+            background-color: var(--bg-panel);
+            padding: 7px 25px;
+            cursor: pointer;
+            border: 2px solid var(--bg-panel);
+            color: var(--color-headings);
+            border-radius: 5px;
+            font-size: 1rem;
+            position: static;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            &:hover {
+              transition: 1s;
+              background-color: transparent;
+              border: 2px solid var(--color-primary);
+              color: var(--color-primary);
+            }
+
+            &:active {
+              transition: 0.1s;
+              background-color: var(--color-primary);
+              color: var(--color);
+            }
           }
-  
-          &:active {
-            transition: 0.1s;
-            background-color: var(--color-primary);
-            color: var(--color);
-          }
-         }
         }
       }
 
@@ -293,7 +325,7 @@ dialog {
         > div {
           display: flex;
           align-items: center;
-          
+
           span {
             min-width: 25%;
             max-height: 36.5px;
@@ -310,6 +342,12 @@ dialog {
             margin-left: 10px;
             position: relative;
 
+            @media only screen and (max-width: 800px) {
+              & {
+                min-width: 45%;
+              }
+            }
+       
             #btn-delete {
               opacity: 20%;
             }
@@ -323,7 +361,7 @@ dialog {
                 opacity: 70%;
               }
             }
-  
+
             &:active {
               transition: 0.1s;
               filter: none;
@@ -337,7 +375,7 @@ dialog {
               }
             }
           }
-  
+
           .active {
             background-color: var(--color-primary);
             border: 2px solid var(--color-primary);
@@ -347,9 +385,9 @@ dialog {
               opacity: 90%;
               filter: invert(1);
             }
-          }       
-          
-          button {
+          }
+
+          button, input[type='submit'] {
             min-width: 140px;
             max-height: 36.5px;
             display: flex;
@@ -364,15 +402,39 @@ dialog {
           height: 10px;
           border: none;
         }
-        
+
         &::-webkit-scrollbar-track {
           background-color: var(--bg-color);
         }
-        
+
         &::-webkit-scrollbar-thumb {
           background-color: var(--bg-panel);
           border-radius: 30px;
           border: 1px solid var(--color-border);
+        }
+      }
+
+      button {
+        background-color: var(--bg-panel);
+        color: var(--color-headings);
+        border: 2px solid var(--bg-panel);
+        font-weight: normal;
+        width: 18%;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 1rem;
+
+        &:hover {
+          transition: 1s;
+          background-color: transparent;
+          border: 2px solid var(--color-primary);
+          color: var(--color-primary);
+        }
+
+        &:active {
+          transition: 0.1s;
+          background-color: var(--color-primary);
+          color: var(--color);
         }
       }
 
@@ -402,28 +464,57 @@ dialog {
           color: var(--color);
         }
       }
+      
+      .div-btns {
+        display: flex;
 
-      button {
-        background-color: var(--bg-panel);
-        color: var(--color-headings);
-        border: 2px solid var(--bg-panel);
-        font-weight: normal;
-        width: 18%;
-        cursor: pointer;
-        border-radius: 3px;
-        font-size: 1rem;
+        #btn-delete-quiz {
+          width: 60%;
+          background-color: #980000;
+          border: 2px solid #980000;
 
-        &:hover {
-          transition: 1s;
-          background-color: transparent;
-          border: 2px solid var(--color-primary);
-          color: var(--color-primary);
+          &:hover {
+            transition: 1s;
+            background-color: transparent;
+            color: #980000;
+          }
+          
+          &:active {
+            transition: 0.1s;
+            background-color: #980000;
+            color: var(--color);
+          }
         }
 
-        &:active {
-          transition: 0.1s;
+        > input {
+          width: 100%;
           background-color: var(--color-primary);
+          padding: 10px;
+          cursor: pointer;
+          border: 2px solid var(--color-primary);
           color: var(--color);
+          border-radius: 5px;
+          font-weight: bold;
+          font-size: 1.05rem;
+          letter-spacing: 1px;
+          margin-bottom: 40px;
+          margin-top: 15px;
+
+          &:hover {
+            transition: 1s;
+            background-color: transparent;
+            color: var(--color-primary);
+          }
+
+          &:active {
+            transition: 0.1s;
+            background-color: var(--color-primary);
+            color: var(--color);
+          }
+        }
+
+        & input:nth-child(1) {
+          margin-right: 5px;
         }
       }
     }
@@ -433,3 +524,4 @@ dialog {
     background: rgba(0, 0, 0, 0.6);
   }
 }
+  

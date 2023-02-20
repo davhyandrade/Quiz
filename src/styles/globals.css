@@ -34,6 +34,11 @@ section {
   height: 100px;
   justify-content: space-between;
 }
+@media only screen and (max-width: 800px) {
+  .menu .position {
+    width: 90%;
+  }
+}
 .menu .position > img {
   filter: grayscale(1);
 }
@@ -67,11 +72,12 @@ section {
   transition: 0.1s;
   color: var(--color-text);
 }
-.menu .position > div > span, .menu .position > div img {
+.menu .position > div > span,
+.menu .position > div img {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   background-color: #004b3e;
@@ -81,10 +87,22 @@ section {
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media only screen and (max-width: 800px) {
+  .menu .position > div > span,
+  .menu .position > div img {
+    width: 35px;
+    height: 35px;
+  }
+}
 .menu .btn-menu {
   width: 80%;
   position: absolute;
   bottom: 10px;
+}
+@media only screen and (max-width: 800px) {
+  .menu .btn-menu {
+    width: 100%;
+  }
 }
 .menu .btn-menu a {
   text-decoration: none;
@@ -104,6 +122,44 @@ section {
 .menu #active {
   color: var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
+}
+
+.menu-mobile {
+  background-color: var(--bg-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-mobile .position {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+}
+.menu-mobile .position .btns-auth {
+  background-color: var(--bg-panel-menu);
+}
+.menu-mobile .position .btns-auth:nth-last-child(1) {
+  border-bottom: none;
+}
+.menu-mobile .position a {
+  text-decoration: none;
+  color: var(--color-text);
+  width: 100%;
+  padding: 30px 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+}
+.menu-mobile .position a:active {
+  transition: 0.1s;
+  color: var(--color-primary);
 }
 
 footer {
@@ -202,8 +258,7 @@ footer > div p span {
   width: 45px;
   height: 45px;
   position: relative;
-  -webkit-animation: sk-chase 2.5s infinite linear both;
-          animation: sk-chase 2.5s infinite linear both;
+  animation: sk-chase 2.5s infinite linear both;
 }
 .field-loader .field .sk-chase-dot {
   width: 100%;
@@ -211,8 +266,7 @@ footer > div p span {
   position: absolute;
   left: 0;
   top: 0;
-  -webkit-animation: sk-chase-dot 2s infinite ease-in-out both;
-          animation: sk-chase-dot 2s infinite ease-in-out both;
+  animation: sk-chase-dot 2s infinite ease-in-out both;
 }
 .field-loader .field .sk-chase-dot::before {
   content: "";
@@ -221,83 +275,52 @@ footer > div p span {
   height: 25%;
   background-color: var(--color-text);
   border-radius: 100%;
-  -webkit-animation: sk-chase-dot-before 2s infinite ease-in-out both;
-          animation: sk-chase-dot-before 2s infinite ease-in-out both;
+  animation: sk-chase-dot-before 2s infinite ease-in-out both;
 }
 .field-loader .field .sk-chase-dot:nth-child(1) {
-  -webkit-animation-delay: -1.1s;
-          animation-delay: -1.1s;
+  animation-delay: -1.1s;
 }
 .field-loader .field .sk-chase-dot:nth-child(2) {
-  -webkit-animation-delay: -1s;
-          animation-delay: -1s;
+  animation-delay: -1s;
 }
 .field-loader .field .sk-chase-dot:nth-child(3) {
-  -webkit-animation-delay: -0.9s;
-          animation-delay: -0.9s;
+  animation-delay: -0.9s;
 }
 .field-loader .field .sk-chase-dot:nth-child(4) {
-  -webkit-animation-delay: -0.8s;
-          animation-delay: -0.8s;
+  animation-delay: -0.8s;
 }
 .field-loader .field .sk-chase-dot:nth-child(5) {
-  -webkit-animation-delay: -0.7s;
-          animation-delay: -0.7s;
+  animation-delay: -0.7s;
 }
 .field-loader .field .sk-chase-dot:nth-child(6) {
-  -webkit-animation-delay: -0.6s;
-          animation-delay: -0.6s;
+  animation-delay: -0.6s;
 }
 .field-loader .field .sk-chase-dot:nth-child(1):before {
-  -webkit-animation-delay: -1.1s;
-          animation-delay: -1.1s;
+  animation-delay: -1.1s;
 }
 .field-loader .field .sk-chase-dot:nth-child(2):before {
-  -webkit-animation-delay: -1s;
-          animation-delay: -1s;
+  animation-delay: -1s;
 }
 .field-loader .field .sk-chase-dot:nth-child(3):before {
-  -webkit-animation-delay: -0.9s;
-          animation-delay: -0.9s;
+  animation-delay: -0.9s;
 }
 .field-loader .field .sk-chase-dot:nth-child(4):before {
-  -webkit-animation-delay: -0.8s;
-          animation-delay: -0.8s;
+  animation-delay: -0.8s;
 }
 .field-loader .field .sk-chase-dot:nth-child(5):before {
-  -webkit-animation-delay: -0.7s;
-          animation-delay: -0.7s;
+  animation-delay: -0.7s;
 }
 .field-loader .field .sk-chase-dot:nth-child(6):before {
-  -webkit-animation-delay: -0.6s;
-          animation-delay: -0.6s;
-}
-@-webkit-keyframes sk-chase {
-  100% {
-    transform: rotate(360deg);
-  }
+  animation-delay: -0.6s;
 }
 @keyframes sk-chase {
   100% {
     transform: rotate(360deg);
   }
 }
-@-webkit-keyframes sk-chase-dot {
-  80%, 100% {
-    transform: rotate(360deg);
-  }
-}
 @keyframes sk-chase-dot {
   80%, 100% {
     transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes sk-chase-dot-before {
-  50% {
-    transform: scale(0.4);
-  }
-  100%, 0% {
-    transform: scale(1);
   }
 }
 @keyframes sk-chase-dot-before {
@@ -319,6 +342,7 @@ dialog {
   border-radius: 15px;
   border: 1px solid var(--color-border);
   position: relative;
+  z-index: 99;
 }
 dialog::-webkit-scrollbar {
   width: 10px;
@@ -339,6 +363,7 @@ dialog::-webkit-scrollbar-thumb {
   dialog {
     margin: -175px -47.5%;
     min-width: 95%;
+    top: 35%;
   }
 }
 dialog .position {
@@ -401,11 +426,26 @@ dialog .position form > div:nth-child(2) {
   justify-content: space-between;
   width: 100%;
 }
+@media only screen and (max-width: 800px) {
+  dialog .position form > div:nth-child(2) {
+    flex-direction: column;
+  }
+}
 dialog .position form > div:nth-child(2) > div:nth-child(1) {
   width: 55%;
 }
+@media only screen and (max-width: 800px) {
+  dialog .position form > div:nth-child(2) > div:nth-child(1) {
+    width: 100%;
+  }
+}
 dialog .position form > div:nth-child(2) > div:nth-child(2) {
   width: 40%;
+}
+@media only screen and (max-width: 800px) {
+  dialog .position form > div:nth-child(2) > div:nth-child(2) {
+    width: 100%;
+  }
 }
 dialog .position form .field-inputs {
   display: flex;
@@ -432,23 +472,8 @@ dialog .position form .field-inputs > div input[type=radio] {
   width: 20px;
 }
 dialog .position form .field-inputs > div input[type=radio]:checked {
-  -webkit-animation: boom 0.2s ease-in;
-          animation: boom 0.2s ease-in;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
-}
-@-webkit-keyframes boom {
-  0% {
-    opacity: 0.2;
-    transform: scale(1.5);
-  }
-  90% {
-    opacity: 0.01;
-    transform: scale(3);
-  }
-  100% {
-    transform: none;
-  }
+  animation: boom 0.2s ease-in;
+  animation-iteration-count: 1;
 }
 @keyframes boom {
   0% {
@@ -501,18 +526,11 @@ dialog .position form .field-inputs input[type=text]:-moz-placeholder-shown + la
   transform: translateY(0);
   font-size: 1rem;
 }
-dialog .position form .field-inputs input[type=text]:-ms-input-placeholder + label {
-  transform: translateY(0);
-  font-size: 1rem;
-}
 dialog .position form .field-inputs input[type=text]:placeholder-shown + label {
   transform: translateY(0);
   font-size: 1rem;
 }
 dialog .position form .field-inputs input[type=text]::-moz-placeholder {
-  visibility: hidden;
-}
-dialog .position form .field-inputs input[type=text]:-ms-input-placeholder {
   visibility: hidden;
 }
 dialog .position form .field-inputs input[type=text]::placeholder {
@@ -534,12 +552,23 @@ dialog .position form .field-upload {
   align-items: center;
   margin-top: 25px;
 }
+@media only screen and (max-width: 800px) {
+  dialog .position form .field-upload {
+    margin-top: 0;
+  }
+}
 dialog .position form .field-upload span {
   font-size: 0.7rem;
   color: var(--color-text);
   text-align: center;
   width: 70%;
   margin-bottom: 15px;
+}
+@media only screen and (max-width: 800px) {
+  dialog .position form .field-upload span {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
 }
 dialog .position form .field-upload .field-image {
   -o-object-fit: cover;
@@ -610,6 +639,11 @@ dialog .position form .field-page > div span {
   margin-left: 10px;
   position: relative;
 }
+@media only screen and (max-width: 800px) {
+  dialog .position form .field-page > div span {
+    min-width: 45%;
+  }
+}
 dialog .position form .field-page > div span #btn-delete {
   opacity: 20%;
 }
@@ -641,7 +675,7 @@ dialog .position form .field-page > div .active #btn-delete {
   opacity: 90%;
   filter: invert(1);
 }
-dialog .position form .field-page > div button {
+dialog .position form .field-page > div button, dialog .position form .field-page > div input[type=submit] {
   min-width: 140px;
   max-height: 36.5px;
   display: flex;
@@ -661,6 +695,27 @@ dialog .position form .field-page::-webkit-scrollbar-thumb {
   background-color: var(--bg-panel);
   border-radius: 30px;
   border: 1px solid var(--color-border);
+}
+dialog .position form button {
+  background-color: var(--bg-panel);
+  color: var(--color-headings);
+  border: 2px solid var(--bg-panel);
+  font-weight: normal;
+  width: 18%;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+dialog .position form button:hover {
+  transition: 1s;
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+dialog .position form button:active {
+  transition: 0.1s;
+  background-color: var(--color-primary);
+  color: var(--color);
 }
 dialog .position form input[type=submit] {
   width: 100%;
@@ -686,29 +741,50 @@ dialog .position form input[type=submit]:active {
   background-color: var(--color-primary);
   color: var(--color);
 }
-dialog .position form button {
-  background-color: var(--bg-panel);
-  color: var(--color-headings);
-  border: 2px solid var(--bg-panel);
-  font-weight: normal;
-  width: 18%;
-  cursor: pointer;
-  border-radius: 3px;
-  font-size: 1rem;
+dialog .position form .div-btns {
+  display: flex;
 }
-dialog .position form button:hover {
+dialog .position form .div-btns #btn-delete-quiz {
+  width: 60%;
+  background-color: #980000;
+  border: 2px solid #980000;
+}
+dialog .position form .div-btns #btn-delete-quiz:hover {
   transition: 1s;
   background-color: transparent;
+  color: #980000;
+}
+dialog .position form .div-btns #btn-delete-quiz:active {
+  transition: 0.1s;
+  background-color: #980000;
+  color: var(--color);
+}
+dialog .position form .div-btns > input {
+  width: 100%;
+  background-color: var(--color-primary);
+  padding: 10px;
+  cursor: pointer;
   border: 2px solid var(--color-primary);
+  color: var(--color);
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  margin-top: 15px;
+}
+dialog .position form .div-btns > input:hover {
+  transition: 1s;
+  background-color: transparent;
   color: var(--color-primary);
 }
-dialog .position form button:active {
+dialog .position form .div-btns > input:active {
   transition: 0.1s;
   background-color: var(--color-primary);
   color: var(--color);
 }
-dialog::-webkit-backdrop {
-  background: rgba(0, 0, 0, 0.6);
+dialog .position form .div-btns input:nth-child(1) {
+  margin-right: 5px;
 }
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.6);
@@ -727,6 +803,11 @@ dialog::backdrop {
   margin-bottom: 100px;
   margin-top: 20px;
 }
+@media only screen and (max-width: 800px) {
+  .field-quizzes > .position {
+    width: 97%;
+  }
+}
 .field-quizzes > .position .card {
   position: relative;
   overflow: hidden;
@@ -744,12 +825,13 @@ dialog::backdrop {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 80px;
+  max-height: 200px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(21, 21, 21, 0.4392156863), transparent);
 }
 .field-quizzes > .position .card .info-card .position {
   width: 90%;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 .field-quizzes > .position .card .info-card .position h1 {
   color: white;
@@ -773,13 +855,23 @@ dialog::backdrop {
   margin: 0.15%;
   background-color: var(--bg-panel);
 }
+@media only screen and (max-width: 800px) {
+  .field-quizzes > .position .quiz {
+    width: 48%;
+    margin: 1%;
+    height: 180px;
+  }
+}
 .field-quizzes > .position .quiz:hover {
   transition: 1s;
 }
-.field-quizzes > .position .quiz:hover > img {
-  transition: 1s;
+.field-quizzes > .position .quiz:hover .info-card .position p {
+  white-space: break-spaces;
+}
+.field-quizzes > .position .quiz:hover > img, .field-quizzes > .position .quiz:hover svg {
+  transition: 0.3s;
   transform: scale(1.1);
-  filter: brightness(0.5) saturate(0.5);
+  filter: sepia(100%) hue-rotate(188deg) saturate(382%) brightness(0.7) grayscale(0.5);
 }
 .field-quizzes > .position .add-button {
   display: flex;
@@ -791,7 +883,7 @@ dialog::backdrop {
   transition: 1s;
   opacity: 30%;
 }
-.field-quizzes > .position .add-button:hover > img {
+.field-quizzes > .position .add-button:hover > svg {
   transition: 1s;
   opacity: 10%;
 }
@@ -803,11 +895,11 @@ dialog::backdrop {
   transition: 0.1s;
   opacity: 100%;
 }
-.field-quizzes > .position .add-button:active > img {
+.field-quizzes > .position .add-button:active > svg {
   transition: 0.1s;
   opacity: 50%;
 }
-.field-quizzes > .position .add-button img {
+.field-quizzes > .position .add-button svg {
   opacity: 45%;
 }
 .field-quizzes > .position .add-button span {
@@ -825,6 +917,11 @@ dialog::backdrop {
   width: 70%;
   display: flex;
 }
+@media only screen and (max-width: 800px) {
+  .settings-field > .position {
+    width: 90%;
+  }
+}
 .settings-field > .position nav {
   width: 27%;
   display: flex;
@@ -832,6 +929,11 @@ dialog::backdrop {
   border-right: 1px solid var(--color-border);
   min-height: 75vh;
   position: relative;
+}
+@media only screen and (max-width: 800px) {
+  .settings-field > .position nav {
+    width: 23%;
+  }
 }
 .settings-field > .position nav a:nth-child(1) {
   margin-top: 40px;
@@ -846,6 +948,12 @@ dialog::backdrop {
   align-items: center;
   text-decoration: none;
 }
+@media only screen and (max-width: 800px) {
+  .settings-field > .position nav a {
+    margin: 5px 12px 5px 12px;
+    color: transparent;
+  }
+}
 .settings-field > .position nav a:hover {
   transition: 1s;
   background-color: var(--bg-panel);
@@ -857,6 +965,12 @@ dialog::backdrop {
 .settings-field > .position nav svg {
   margin-right: 10px;
   opacity: 50%;
+}
+@media only screen and (max-width: 800px) {
+  .settings-field > .position nav svg {
+    min-width: 20px;
+    min-height: 20px;
+  }
 }
 .settings-field > .position nav .active {
   background-color: var(--bg-panel);
@@ -880,6 +994,11 @@ dialog::backdrop {
   display: flex;
   justify-content: center;
   width: 73%;
+}
+@media only screen and (max-width: 800px) {
+  .theme-field {
+    width: 77%;
+  }
 }
 .theme-field > .position {
   width: 90%;
@@ -915,6 +1034,13 @@ dialog::backdrop {
   align-items: center;
   overflow: hidden;
   margin: 0 20px 20px 0;
+}
+@media only screen and (max-width: 800px) {
+  .theme-field > .position .theme-card {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 20px;
+  }
 }
 .theme-field > .position .theme-card:hover {
   transition: 1s;
@@ -1051,10 +1177,25 @@ dialog::backdrop {
   justify-content: space-between;
   width: 60%;
 }
-.quiz-field .position > div:nth-child(1) {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position {
+    margin-top: 25px;
+    width: 90%;
+    flex-direction: column;
+    justify-content: initial;
+    align-items: center;
+  }
+}
+.quiz-field .position .quiz-image-field {
   width: 40%;
 }
-.quiz-field .position > div:nth-child(1) img {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-image-field {
+    width: 100%;
+    margin: 15px 0;
+  }
+}
+.quiz-field .position .quiz-image-field img {
   width: 360px;
   height: 220px;
   border-radius: 15px;
@@ -1063,11 +1204,16 @@ dialog::backdrop {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.quiz-field .position > div:nth-child(1) > div {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-image-field img {
+    width: 100%;
+  }
+}
+.quiz-field .position .quiz-image-field > div {
   display: flex;
   margin-top: 10px;
 }
-.quiz-field .position > div:nth-child(1) > div span {
+.quiz-field .position .quiz-image-field > div span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1077,17 +1223,22 @@ dialog::backdrop {
   border-radius: 3px;
   font-size: 0.8rem;
 }
-.quiz-field .position > div:nth-child(1) > div span:nth-child(2) {
+.quiz-field .position .quiz-image-field > div span:nth-child(2) {
   margin-left: 10px;
   color: var(--color-headings);
   font-weight: bold;
 }
-.quiz-field .position > div:nth-child(2) {
+.quiz-field .position .quiz-content-field {
   display: flex;
   flex-direction: column;
   width: 55%;
 }
-.quiz-field .position > div:nth-child(2) > h1 {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-content-field {
+    width: 100%;
+  }
+}
+.quiz-field .position .quiz-content-field > h1 {
   font-weight: normal;
   font-size: 1.4rem;
   color: var(--color-headings);
@@ -1099,20 +1250,25 @@ dialog::backdrop {
   display: flex;
   align-items: center;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div {
+.quiz-field .position .quiz-content-field > h1 > div {
   position: absolute;
   right: 0;
   bottom: 0;
   display: flex;
   align-items: center;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div div:nth-child(1) svg {
+.quiz-field .position .quiz-content-field > h1 > div div:nth-child(1) svg {
   margin-right: 3px;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div > div {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-content-field > h1 > div div:nth-child(1) svg {
+    margin-right: 5px;
+  }
+}
+.quiz-field .position .quiz-content-field > h1 > div > div {
   position: relative;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div > div:hover:after {
+.quiz-field .position .quiz-content-field > h1 > div > div:hover:after {
   content: attr(data-description);
   position: absolute;
   top: -30px;
@@ -1125,32 +1281,38 @@ dialog::backdrop {
   font-size: 0.7rem;
   z-index: 50;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div > div svg {
+.quiz-field .position .quiz-content-field > h1 > div > div svg {
   width: 22px;
   height: 22px;
   cursor: pointer;
   opacity: 20%;
   z-index: 99;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div > div svg:hover {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-content-field > h1 > div > div svg {
+    min-width: 25px;
+    min-height: 25px;
+  }
+}
+.quiz-field .position .quiz-content-field > h1 > div > div svg:hover {
   transition: 1s;
   opacity: 50%;
 }
-.quiz-field .position > div:nth-child(2) > h1 > div > div svg:active {
+.quiz-field .position .quiz-content-field > h1 > div > div svg:active {
   transition: 1ms;
   opacity: 5%;
 }
-.quiz-field .position > div:nth-child(2) > span {
+.quiz-field .position .quiz-content-field > span {
   color: var(--color-text);
   font-size: 0.9rem;
 }
-.quiz-field .position > div:nth-child(2) p {
+.quiz-field .position .quiz-content-field p {
   color: var(--color-text);
   font-size: 0.75rem;
   opacity: 70%;
   margin-top: 5px;
 }
-.quiz-field .position > div:nth-child(2) button {
+.quiz-field .position .quiz-content-field button {
   cursor: pointer;
   padding: 10px;
   width: 50%;
@@ -1160,21 +1322,27 @@ dialog::backdrop {
   color: var(--color-text);
   margin-top: 20px;
 }
-.quiz-field .position > div:nth-child(2) button:hover {
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-content-field button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+.quiz-field .position .quiz-content-field button:hover {
   transition: 1s;
   background-color: var(--color-primary);
   color: var(--color);
   font-weight: bold;
 }
-.quiz-field .position > div:nth-child(2) button:active {
+.quiz-field .position .quiz-content-field button:active {
   transition: 1ms;
   opacity: 20%;
 }
-.quiz-field .position > div:nth-child(2) .data-quiz {
+.quiz-field .position .quiz-content-field .data-quiz {
   display: flex;
   margin-top: 10px;
 }
-.quiz-field .position > div:nth-child(2) .data-quiz span {
+.quiz-field .position .quiz-content-field .data-quiz span {
   display: flex;
   align-items: center;
   color: var(--color-text);
@@ -1182,7 +1350,7 @@ dialog::backdrop {
   opacity: 50%;
   margin-right: 20px;
 }
-.quiz-field .position > div:nth-child(2) .data-quiz span svg {
+.quiz-field .position .quiz-content-field .data-quiz span svg {
   width: 20px;
   height: 20px;
   opacity: 50%;
@@ -1210,6 +1378,11 @@ dialog::backdrop {
   display: flex;
   justify-content: center;
   border-radius: 5px;
+}
+@media only screen and (max-width: 800px) {
+  .quiz-page > div {
+    width: 95%;
+  }
 }
 .quiz-page > div::-webkit-scrollbar {
   width: 10px;
@@ -1244,6 +1417,11 @@ dialog::backdrop {
 .quiz-page > div .position {
   width: 85%;
   margin-top: 50px;
+}
+@media only screen and (max-width: 800px) {
+  .quiz-page > div .position {
+    width: 90%;
+  }
 }
 .quiz-page > div .position > h1 {
   font-size: 1.1rem;
@@ -1308,6 +1486,11 @@ dialog::backdrop {
   right: 22%;
   z-index: 99;
 }
+@media only screen and (max-width: 800px) {
+  .quiz-page > div .position button {
+    right: 7%;
+  }
+}
 .quiz-page > div .position button:hover {
   transition: 1s;
   background-color: var(--color-primary);
@@ -1334,6 +1517,11 @@ dialog::backdrop {
   font-size: 1rem;
   margin-bottom: 140px;
 }
+@media only screen and (max-width: 800px) {
+  .quiz-page > div .result-quiz span {
+    text-align: center;
+  }
+}
 
 .progress-bar {
   position: absolute;
@@ -1344,27 +1532,7 @@ dialog::backdrop {
 }
 
 .header .active {
-  -webkit-animation: progress 60s linear forwards;
-          animation: progress 60s linear forwards;
-}
-
-@-webkit-keyframes progress {
-  0% {
-    width: 0;
-    background-color: var(--color-primary);
-  }
-  79% {
-    width: 79%;
-    background-color: var(--color-primary);
-    opacity: 30%;
-  }
-  80% {
-    width: 80%;
-  }
-  100% {
-    width: 100%;
-    background-color: orangered;
-  }
+  animation: progress 60s linear forwards;
 }
 
 @keyframes progress {
@@ -1402,6 +1570,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .form-login form {
     width: 85%;
+    margin-bottom: 25vh;
   }
 }
 .form-login form h1 {
@@ -1476,18 +1645,11 @@ dialog::backdrop {
   transform: translateY(0);
   font-size: 1rem;
 }
-.form-login form > div input:-ms-input-placeholder + label {
-  transform: translateY(0);
-  font-size: 1rem;
-}
 .form-login form > div input:placeholder-shown + label {
   transform: translateY(0);
   font-size: 1rem;
 }
 .form-login form > div input::-moz-placeholder {
-  visibility: hidden;
-}
-.form-login form > div input:-ms-input-placeholder {
   visibility: hidden;
 }
 .form-login form > div input::placeholder {
@@ -1572,6 +1734,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .form-register form {
     width: 85%;
+    margin-bottom: 20vh;
   }
 }
 .form-register form h1 {
@@ -1658,18 +1821,11 @@ dialog::backdrop {
   transform: translateY(0);
   font-size: 1rem;
 }
-.form-register form .container-input input:-ms-input-placeholder + label {
-  transform: translateY(0);
-  font-size: 1rem;
-}
 .form-register form .container-input input:placeholder-shown + label {
   transform: translateY(0);
   font-size: 1rem;
 }
 .form-register form .container-input input::-moz-placeholder {
-  visibility: hidden;
-}
-.form-register form .container-input input:-ms-input-placeholder {
   visibility: hidden;
 }
 .form-register form .container-input input::placeholder {
@@ -1785,17 +1941,33 @@ dialog::backdrop {
 .login-redirect img {
   margin-bottom: 10px;
 }
+@media only screen and (max-width: 800px) {
+  .login-redirect img {
+    width: 80px;
+    height: 80px;
+  }
+}
 .login-redirect > h1 {
   font-weight: normal;
   font-size: 2rem;
   color: var(--color-headings);
   margin-bottom: 15px;
 }
+@media only screen and (max-width: 800px) {
+  .login-redirect > h1 {
+    font-size: 1.5rem;
+  }
+}
 .login-redirect > span {
   color: var(--color-text);
   font-size: 1rem;
   width: 22vw;
   text-align: center;
+}
+@media only screen and (max-width: 800px) {
+  .login-redirect > span {
+    width: 60%;
+  }
 }
 .login-redirect > a {
   cursor: pointer;
@@ -1812,6 +1984,11 @@ dialog::backdrop {
   align-items: center;
   justify-content: center;
 }
+@media only screen and (max-width: 800px) {
+  .login-redirect > a {
+    margin-bottom: 25vh;
+  }
+}
 .login-redirect > a:hover {
   transition: 1s;
   background-color: var(--color-primary);
@@ -1827,6 +2004,11 @@ dialog::backdrop {
   display: flex;
   justify-content: center;
   width: 73%;
+}
+@media only screen and (max-width: 800px) {
+  .account-field {
+    width: 77%;
+  }
 }
 .account-field > .position {
   width: 90%;
@@ -1867,6 +2049,19 @@ dialog::backdrop {
   color: var(--color-text);
   background-color: var(--bg-color);
 }
+@media only screen and (max-width: 800px) {
+  .account-field > .position > div input {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .account-field > .position #btn-save {
+    position: initial;
+    margin-bottom: 30px;
+    width: 85%;
+  }
+}
 .account-field > .position button {
   position: absolute;
   right: 0;
@@ -1902,6 +2097,12 @@ dialog::backdrop {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+@media only screen and (max-width: 800px) {
+  .account-field > .position .field-upload {
+    width: 100%;
+    flex-direction: column;
+  }
+}
 .account-field > .position .field-upload span {
   font-size: 0.7rem;
   color: var(--color-text);
@@ -1920,6 +2121,11 @@ dialog::backdrop {
   border: 2px dashed var(--color-border);
   border-radius: 5px;
   margin-right: 10px;
+}
+@media only screen and (max-width: 800px) {
+  .account-field > .position .field-upload .field-image {
+    margin-bottom: 5px;
+  }
 }
 .account-field > .position .field-upload .field-image > img {
   border: 2px dashed var(--color-border);
@@ -2002,6 +2208,12 @@ dialog::backdrop {
   align-items: center;
   margin-bottom: 20vh;
 }
+@media only screen and (max-width: 800px) {
+  .forgot-password-field form {
+    width: 85%;
+    margin-bottom: 25vh;
+  }
+}
 .forgot-password-field form h1 {
   font-size: 2rem;
   color: var(--color-headings);
@@ -2009,9 +2221,19 @@ dialog::backdrop {
   margin-top: 20px;
   opacity: 90%;
 }
+@media only screen and (max-width: 800px) {
+  .forgot-password-field form h1 {
+    font-size: 1.7rem;
+  }
+}
 .forgot-password-field form h1 > span {
   font-weight: bolder;
   font-size: 2.2rem;
+}
+@media only screen and (max-width: 800px) {
+  .forgot-password-field form h1 > span {
+    font-size: 1.9rem;
+  }
 }
 .forgot-password-field form > span {
   color: var(--color-text);
@@ -2062,10 +2284,6 @@ dialog::backdrop {
   color: var(--color-border);
   opacity: 70%;
 }
-.forgot-password-field form > div input[type=number]:-ms-input-placeholder {
-  color: var(--color-border);
-  opacity: 70%;
-}
 .forgot-password-field form > div input[type=number]::placeholder {
   color: var(--color-border);
   opacity: 70%;
@@ -2076,10 +2294,6 @@ dialog::backdrop {
   color: var(--color-primary);
 }
 .forgot-password-field form > div input[type=number]:focus::-moz-placeholder {
-  color: var(--color-primary);
-  opacity: 7%;
-}
-.forgot-password-field form > div input[type=number]:focus:-ms-input-placeholder {
   color: var(--color-primary);
   opacity: 7%;
 }
@@ -2110,18 +2324,11 @@ dialog::backdrop {
   transform: translateY(0);
   font-size: 1rem;
 }
-.forgot-password-field form > div input[type=email]:-ms-input-placeholder + label, .forgot-password-field form > div input[type=text]:-ms-input-placeholder + label, .forgot-password-field form > div input[type=password]:-ms-input-placeholder + label {
-  transform: translateY(0);
-  font-size: 1rem;
-}
 .forgot-password-field form > div input[type=email]:placeholder-shown + label, .forgot-password-field form > div input[type=text]:placeholder-shown + label, .forgot-password-field form > div input[type=password]:placeholder-shown + label {
   transform: translateY(0);
   font-size: 1rem;
 }
 .forgot-password-field form > div input[type=email]::-moz-placeholder, .forgot-password-field form > div input[type=text]::-moz-placeholder, .forgot-password-field form > div input[type=password]::-moz-placeholder {
-  visibility: hidden;
-}
-.forgot-password-field form > div input[type=email]:-ms-input-placeholder, .forgot-password-field form > div input[type=text]:-ms-input-placeholder, .forgot-password-field form > div input[type=password]:-ms-input-placeholder {
   visibility: hidden;
 }
 .forgot-password-field form > div input[type=email]::placeholder, .forgot-password-field form > div input[type=text]::placeholder, .forgot-password-field form > div input[type=password]::placeholder {
@@ -2177,4 +2384,189 @@ dialog::backdrop {
 .forgot-password-field form input[type=submit]:active {
   transition: 1ms;
   opacity: 20%;
+}
+
+.field-no-quiz {
+  min-height: 80vh;
+  min-width: 73%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.field-no-quiz img {
+  margin-bottom: 10px;
+}
+@media only screen and (max-width: 800px) {
+  .field-no-quiz img {
+    width: 80px;
+    height: 80px;
+  }
+}
+.field-no-quiz > h1 {
+  font-weight: normal;
+  font-size: 2rem;
+  color: var(--color-headings);
+  margin-bottom: 15px;
+}
+@media only screen and (max-width: 800px) {
+  .field-no-quiz > h1 {
+    font-size: 1.5rem;
+  }
+}
+.field-no-quiz > span {
+  color: var(--color-text);
+  font-size: 1rem;
+  width: 22vw;
+  text-align: center;
+}
+@media only screen and (max-width: 800px) {
+  .field-no-quiz > span {
+    width: 60%;
+  }
+}
+.field-no-quiz > a {
+  cursor: pointer;
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  margin-top: 20px;
+  margin-bottom: 20vh;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 800px) {
+  .field-no-quiz > a {
+    margin-bottom: 25vh;
+  }
+}
+.field-no-quiz > a:hover {
+  transition: 1s;
+  background-color: var(--color-primary);
+  color: var(--color);
+  font-weight: bold;
+}
+.field-no-quiz > a:active {
+  transition: 1ms;
+  opacity: 20%;
+}
+
+.modal-field {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  background-color: var(--bg-backdrop);
+}
+.modal-field .position {
+  background-color: var(--bg-color);
+  min-height: 40vh;
+  width: 40%;
+  filter: drop-shadow(0px 0px 20px rgba(128, 128, 128, 0.15));
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media only screen and (max-width: 800px) {
+  .modal-field .position {
+    width: 90%;
+    min-height: 35vh;
+  }
+}
+.modal-field .position #btn-delete {
+  position: absolute;
+  right: 3%;
+  top: 4%;
+  cursor: pointer;
+  opacity: 60%;
+  border-radius: 7px;
+  padding: 7px;
+}
+.modal-field .position #btn-delete:hover {
+  transition: 1s;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 100%;
+}
+.modal-field .position #btn-delete:active {
+  transition: 0.1s;
+  opacity: 20%;
+}
+.modal-field .position .header {
+  width: 100%;
+  padding: 40px 50px 20px 50px;
+  border-bottom: 1px solid var(--color-border);
+}
+.modal-field .position .header h1 {
+  font-weight: normal;
+  color: var(--color-headings);
+}
+.modal-field .position > span {
+  width: 85%;
+  text-align: justify;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  color: var(--color-text);
+}
+
+.toggle-menu {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 999;
+}
+@media only screen and (max-width: 800px) {
+  .toggle-menu {
+    display: flex;
+  }
+}
+.toggle-menu .toggle-menu-item {
+  width: 30px;
+  height: 3.7px;
+  background: var(--color-text);
+  transition: all 0.5s ease-in-out;
+}
+.toggle-menu .toggle-menu-item::before, .toggle-menu .toggle-menu-item::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 3.7px;
+  background: var(--color-text);
+  transition: all 0.5s ease-in-out;
+}
+.toggle-menu .toggle-menu-item::before {
+  transform: translateY(-8px);
+}
+.toggle-menu .toggle-menu-item::after {
+  transform: translateY(8px);
+}
+
+.active .toggle-menu-item {
+  transform: translateX(-50px);
+  background: transparent;
+  box-shadow: none;
+}
+.active .toggle-menu-item::before {
+  transform: rotate(45deg) translate(35px, -35px);
+}
+.active .toggle-menu-item::after {
+  transform: rotate(-45deg) translate(35px, 35px);
 }/*# sourceMappingURL=globals.css.map */

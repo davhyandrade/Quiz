@@ -8,9 +8,26 @@
     display: flex;
     justify-content: space-between;
     width: 60%;
-
-    > div:nth-child(1) {
+    
+    @media only  screen and (max-width: 800px) {
+      & {
+        margin-top: 25px;
+        width: 90%;
+        flex-direction: column;
+        justify-content: initial;
+        align-items: center;
+      }
+    }
+   
+    .quiz-image-field {
       width: 40%;
+
+      @media only screen and (max-width: 800px) {
+        & {
+          width: 100%;
+          margin: 15px 0;
+        }
+      }
 
       img {
         width: 360px;
@@ -19,6 +36,12 @@
         border: 1px solid var(--color-border);
         padding: 5px;
         object-fit: cover;
+
+        @media only screen and (max-width: 800px) {
+          & {
+            width: 100%;
+          }
+        }
       }
 
       > div {
@@ -44,10 +67,16 @@
       }
     }
 
-    > div:nth-child(2) {
+    .quiz-content-field {
       display: flex;
       flex-direction: column;
       width: 55%;
+      
+      @media only screen and (max-width: 800px) {
+        & {
+          width: 100%;
+        }
+      }
 
       > h1 {
         font-weight: normal;
@@ -70,6 +99,12 @@
 
           div:nth-child(1) svg {
             margin-right: 3px;
+
+            @media only screen and (max-width: 800px) {
+              & {
+                margin-right: 5px;
+              }
+            }
           }
 
           > div {
@@ -96,6 +131,13 @@
               opacity: 20%;
               z-index: 99;
     
+              @media only screen and (max-width: 800px) {
+                & {
+                  min-width: 25px;
+                  min-height: 25px;
+                }
+              }
+
               &:hover {
                 transition: 1s;
                 opacity: 50%;
@@ -131,6 +173,13 @@
         border: 1px solid var(--color-border);
         color: var(--color-text);
         margin-top: 20px;
+
+        @media only screen and (max-width: 800px) {
+          & {
+            width: 100%;
+            padding: 12px;
+          }
+        }
 
         &:hover {
           transition: 1s;

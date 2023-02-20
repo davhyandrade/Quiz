@@ -1,6 +1,5 @@
 import { FormEvent, useContext, useEffect, useState } from 'react';
 import { Context } from '../context/layout';
-import Image from 'next/image';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { parseCookies } from 'nookies';
@@ -136,6 +135,10 @@ export default function Dialog() {
     inputQuestionsQuiz.current.value = '';
   }
 
+  useEffect(() => {
+    handleUpdatePageQuiz();
+  }, [questions]);
+
   function handleDeleteQuestion(id: number) {
     setQuestions(questions.filter((value: any) => value.id !== id));
     questions.map((element: any) => {
@@ -164,17 +167,10 @@ export default function Dialog() {
     inputQuestionsQuiz.current.value = '';
     setQuestions(dataQuiz[id]?.data?.questions);
     setResponseQuiz(dataQuiz[id]?.data?.response);
-
-    if (id > 1) {
-      setIndexQuestionsPage(0);
-    } else {
-      setIndexQuestionsPage(1);
-    }
+    if (isDeletePage) return setIndexQuestionsPage(0);
+    if (id > 1) return setIndexQuestionsPage(0);
+    return setIndexQuestionsPage(1);
   }
-
-  useEffect(() => {
-    handleUpdatePageQuiz();
-  }, [questions]);
 
   function handleUpdatePageQuiz() {
     const updateDataQuiz = {
@@ -214,6 +210,8 @@ export default function Dialog() {
     setDataQuiz((prevData: Array<object>) => [...prevData, pageQuiz]);
   }
 
+  const [isDeletePage, setIsDeletePage] = useState<boolean>(false);
+
   function handleDeletePageQuiz(id: number) {
     setDataQuiz(dataQuiz.filter((value: any) => value.id !== id));
     dataQuiz.map((element: any) => {
@@ -226,8 +224,14 @@ export default function Dialog() {
         inputStatementQuiz.current.value = '';
       }, 0);
     }
-  }
 
+    if (dataQuiz[1]?.data?.questions === '') return setIsDeletePage(true);
+  }
+  
+  useEffect(() => {
+    if (isDeletePage) setIndexQuestionsPage(0);
+  }, [isDeletePage]);
+  
   const { inputResponseQuiz }: any = useContext(Context);
   const [responseQuiz, setResponseQuiz] = useState<number>();
 
@@ -247,7 +251,7 @@ export default function Dialog() {
           <div>
             <div>
               <div className="field-inputs">
-                <input ref={inputTitleQuiz} name="title" id="title-quiz" type="text" placeholder="titulo" required />
+                <input ref={inputTitleQuiz} maxLength={60} name="title" id="title-quiz" type="text" placeholder="titulo" required />
                 <label htmlFor="title-quiz">Título</label>
               </div>
               <div className="field-inputs">
@@ -257,6 +261,7 @@ export default function Dialog() {
                   id="description-quiz"
                   type="text"
                   placeholder="descricao"
+                  maxLength={175}
                   required
                 />
                 <label htmlFor="description-quiz">Descrição</label>

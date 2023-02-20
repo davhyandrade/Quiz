@@ -1,4 +1,4 @@
-.login-redirect {
+.field-no-quiz {
   min-height: 80vh;
   min-width: 73%;
   display: flex;
@@ -8,7 +8,7 @@
 
   img {
     margin-bottom: 10px;
-
+    
     @media only screen and (max-width: 800px) {
       & {
         width: 80px;
@@ -22,7 +22,7 @@
     font-size: 2rem;
     color: var(--color-headings);
     margin-bottom: 15px;
-      
+        
     @media only screen and (max-width: 800px) {
       & {
         font-size: 1.5rem;
@@ -57,13 +57,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+ 
     @media only screen and (max-width: 800px) {
       & {
         margin-bottom: 25vh;
       }
     }
-
+    
     &:hover {
       transition: 1s;
       background-color: var(--color-primary);

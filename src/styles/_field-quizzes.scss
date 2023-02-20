@@ -11,6 +11,12 @@
     margin-bottom: 100px;
     margin-top: 20px;
 
+    @media only screen and (max-width: 800px) {
+      & {
+        width: 97%;
+      }
+    }
+
     .card {
       position: relative;
       overflow: hidden;
@@ -28,12 +34,13 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: 80px;
+        max-height: 200px;
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), #15151570 , transparent);
         
         .position {
           width: 90%;
           margin-top: 10px;
+          margin-bottom: 20px;
           
           h1 {
             color: white;
@@ -61,14 +68,26 @@
       border-radius: 5px;
       margin: 0.15%;
       background-color: var(--bg-panel);
-
+      
+      @media only screen and (max-width: 800px) {
+        & {
+          width: 48%;
+          margin: 1%;
+          height: 180px;
+        }
+      }
+  
       &:hover { 
         transition: 1s;
+        
+        .info-card .position p {
+          white-space: break-spaces;
+        }
 
-        > img {
-          transition: 1s;
+        > img, svg {
+          transition: 0.3s;
           transform: scale(1.1);
-          filter: brightness(0.5) saturate(0.5);
+          filter: sepia(100%) hue-rotate(188deg) saturate(382%) brightness(0.7) grayscale(0.5);
         }
       }
     }
@@ -85,7 +104,7 @@
           opacity: 30%;
         }
         
-        > img {
+        > svg {
           transition: 1s;
           opacity: 10%;
         }
@@ -100,13 +119,13 @@
           opacity: 100%;
         }
 
-        > img {
+        > svg {
           transition: 0.1s;
           opacity: 50%;
         }
       }
 
-      img {
+      svg {
         opacity: 45%;
       }
 
@@ -115,7 +134,6 @@
         margin-top: 15px;
         font-size: 1.1rem;
       } 
-      
     }
   }
 }

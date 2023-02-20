@@ -14,13 +14,19 @@
     height: 100px;
     justify-content: space-between;
 
+    @media only screen and (max-width: 800px) {
+      & {
+        width: 90%;
+      }
+    }
+
     > img {
       filter: grayscale(1);
     }
 
     > div {
       position: relative;
-      
+
       > a {
         text-decoration: none;
         padding: 10px 35px;
@@ -54,11 +60,12 @@
         }
       }
 
-      > span, img {
+      > span,
+      img {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 15px;
+        border-radius: 50%;
         width: 30px;
         height: 30px;
         background-color: #004b3e;
@@ -66,6 +73,13 @@
         font-size: 1rem;
         color: white;
         object-fit: cover;
+        
+        @media only screen and (max-width: 800px) {
+          & {
+            width: 35px;
+            height: 35px;
+          }
+        }
       }
     }
   }
@@ -74,6 +88,12 @@
     width: 80%;
     position: absolute;
     bottom: 10px;
+
+    @media only screen and (max-width: 800px) {
+      & {
+        width: 100%;
+      }
+    }
 
     a {
       text-decoration: none;
@@ -97,5 +117,48 @@
   #active {
     color: var(--color-primary);
     border-bottom: 2px solid var(--color-primary);
+  }
+}
+
+.menu-mobile {
+  background-color: var(--bg-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .position {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+    
+    .btns-auth {
+      background-color: var(--bg-panel-menu);
+
+      &:nth-last-child(1) {
+        border-bottom: none;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color-text);
+      width: 100%;
+      padding: 30px 0;
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+
+      &:active {
+        transition: 0.1s;
+        color: var(--color-primary);
+      }
+    }
   }
 }

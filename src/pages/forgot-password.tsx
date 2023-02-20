@@ -81,7 +81,6 @@ export default function ForgotPassword() {
         email: emailUser,
         code: codeVerify,
       });
-      console.log(email);
       toast.success(email.data.msg, {
         theme: 'colored',
       });

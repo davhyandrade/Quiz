@@ -24,6 +24,7 @@ interface IContext {
   setIsActiveDialog?: any;
   isActiveDialog?: boolean;
   dialog?: LegacyRef<HTMLDialogElement>;
+  dialogEdit?: LegacyRef<HTMLDialogElement>;
   setDataQuiz?: any;
   dataQuiz?: any;
   setIsActiveLoading?: any;
@@ -51,6 +52,8 @@ interface IContext {
   isActiveButtonMenu?: number;
   setIsActiveDropdown?: any;
   isActiveDropdown?: boolean;
+  setIsActiveWarningModal?: any;
+  isActiveWarningModal?: boolean;
 }
 
 export const Context = createContext<IContext>({});
@@ -131,6 +134,7 @@ export default function Layout({ children }: ComponentProps) {
 
   const [isActiveDialog, setIsActiveDialog] = useState<boolean>(false);
   const dialog = useRef<any>(null);
+  const dialogEdit = useRef<any>(null);
   const inputTitleQuiz = useRef<any>(null);
   const inputDescriptionQuiz = useRef<any>(null);
   const inputQuestionsQuiz = useRef<any>(null);
@@ -140,7 +144,8 @@ export default function Layout({ children }: ComponentProps) {
 
   function handleOpenDialog() {
     window.scrollTo(0, 0);
-    dialog.current.showModal();
+    dialog.current?.showModal();
+    dialogEdit.current?.showModal();
     setIsActiveDialog(true);
   }
 
@@ -160,7 +165,8 @@ export default function Layout({ children }: ComponentProps) {
     inputImageQuiz.current.value = '';
     setDataQuiz([{}]);
     setIdDataQuiz(1);
-    dialog.current.close();
+    dialog.current?.close();
+    dialogEdit.current?.close();
     setIsLoadingModal(false);
   }
 
@@ -203,6 +209,8 @@ export default function Layout({ children }: ComponentProps) {
   ];
 
   const [isActiveDropdown, setIsActiveDropdown] = useState<boolean>(false);
+ 
+  const [isActiveWarningModal, setIsActiveWarningModal] = useState<boolean>(false);
 
   return (
     <>
@@ -223,6 +231,7 @@ export default function Layout({ children }: ComponentProps) {
             setIsActiveDialog,
             isActiveDialog,
             dialog,
+            dialogEdit,
             setDataQuiz,
             dataQuiz,
             setIsActiveLoading,
@@ -249,7 +258,9 @@ export default function Layout({ children }: ComponentProps) {
             setIsActiveButtonMenu,
             isActiveButtonMenu,
             setIsActiveDropdown,
-            isActiveDropdown
+            isActiveDropdown,
+            setIsActiveWarningModal,
+            isActiveWarningModal
           }}
         >
           <Menu />

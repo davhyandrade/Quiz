@@ -67,8 +67,6 @@ export default function Account() {
         imageBase64: previewSource,
         preset: 'quiz-profile-images-uploads',
       });
-      console.log(imageURL.data.uploadResponse.url);
-
       image = imageURL.data.uploadResponse.url;
     }
 
@@ -205,7 +203,7 @@ export default function Account() {
                   <span onClick={handleDeleteAccount} className="btn-text btn-delete-account">
                     {!firstDeleteAccount ? 'Delete account' : 'Press again to confirm'}
                   </span>
-                  <button onClick={handleSaveChange}>{isLoadingSaveChange ? 'Saving...' : 'Save Change'}</button>
+                  <button id='btn-save' onClick={handleSaveChange}>{isLoadingSaveChange ? 'Saving...' : 'Save Change'}</button>
                 </div>
               </div>
             </>

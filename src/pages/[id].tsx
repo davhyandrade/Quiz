@@ -28,9 +28,9 @@ export default function Quizzes() {
       if (typeof Router.query.id === 'undefined') id = window.location.href.split('/').pop();
       const data = await axios.get(`api/quiz/${id}`);
       setQuiz(data.data.quiz);
-    } catch (error) {
+    } catch (error: any) {
       Router.push('/');
-      toast.error('Aconteceu um erro no servidor!', {
+      toast.error(error.response.data.msg, {
         theme: 'colored',
       });
       console.log(error);
@@ -51,14 +51,16 @@ export default function Quizzes() {
       {quiz && (
         <div className="quiz-field">
           <div className="position">
-            <div>
-              <img src={quiz.image} alt="faddfds" />
-              <div>
-                <span>Quantidade de Páginas</span>
-                <span>{quiz.pages.length}</span>
+            {window.innerWidth > 800 &&
+              <div className='quiz-image-field'>
+                <img src={quiz.image} alt="faddfds" />
+                <div>
+                  <span>Quantidade de Páginas</span>
+                  <span>{quiz.pages.length}</span>
+                </div>
               </div>
-            </div>
-            <div> 
+            }
+            <div className='quiz-content-field'> 
               <h1>
                 {quiz.title}
                 <div>
@@ -116,6 +118,15 @@ export default function Quizzes() {
               <span>{quiz.description}</span>
               <p>Questões de múltipla escolha, com resposta única referente ao tema abordado pelo Quiz.</p>
               <button onClick={() => setIsActiveQuiz(true)}>Começar</button>
+              {window.matchMedia("(max-width: 800px)") &&
+                <div className='quiz-image-field'>
+                  <img src={quiz.image} alt="faddfds" />
+                  <div>
+                    <span>Quantidade de Páginas</span>
+                    <span>{quiz.pages.length}</span>
+                  </div>
+                </div>
+              }
               <div className="data-quiz">
                 <span>
                   <svg

@@ -22,17 +22,14 @@ export default async function handler(request: NextApiRequest, response: NextApi
     console.log(error);
   }
 
-  const tokenDecode = jwt.decode(token) as any;
-
-  const quizzes = await Quiz.find({ user: tokenDecode.id });
-
-  if (!quizzes) return response.status(402).json({ msg: 'Quiz não encontrado!' });
-
   const { method } = request;
 
   switch (method) {
     case 'GET':
       try {
+        const tokenDecode = jwt.decode(token) as any;
+        const quizzes = await Quiz.find({ user: tokenDecode.id });
+        if (!quizzes) return response.status(402).json({ msg: 'Quiz não encontrado!' });
         response.status(200).json({ msg: 'Listagem realizada com sucesso!!', quizzes });
       } catch (error) {
         response.status(500).json({ msg: 'Aconteceu um erro no servidor!' });

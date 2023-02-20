@@ -11,10 +11,11 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20vh;
-
+    
     @media only screen and (max-width: 800px) {
       & {
         width: 85%;
+        margin-bottom: 25vh;
       }
     }
 
