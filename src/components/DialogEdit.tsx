@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle<IProps>`
     }`}
 `;
 
-export default function dialogEdit({ idQuiz }: any) {
+export default function DialogEdit({ idQuiz }: any) {
   const { inputDescriptionQuiz, inputTitleQuiz, inputQuestionsQuiz, inputStatementQuiz, inputImageQuiz }: any =
     useContext(Context);
 
