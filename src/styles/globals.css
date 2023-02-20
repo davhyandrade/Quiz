@@ -36,7 +36,7 @@ section {
 }
 @media only screen and (max-width: 800px) {
   .menu .position {
-    width: 90%;
+    width: 85%;
   }
 }
 .menu .position > img {
@@ -363,7 +363,7 @@ dialog::-webkit-scrollbar-thumb {
   dialog {
     margin: -175px -47.5%;
     min-width: 95%;
-    top: 35%;
+    top: 29%;
   }
 }
 dialog .position {
@@ -857,8 +857,8 @@ dialog::backdrop {
 }
 @media only screen and (max-width: 800px) {
   .field-quizzes > .position .quiz {
-    width: 48%;
-    margin: 1%;
+    width: 49%;
+    margin: 0.5%;
     height: 180px;
   }
 }
@@ -919,7 +919,7 @@ dialog::backdrop {
 }
 @media only screen and (max-width: 800px) {
   .settings-field > .position {
-    width: 90%;
+    width: 95%;
   }
 }
 .settings-field > .position nav {
@@ -932,7 +932,7 @@ dialog::backdrop {
 }
 @media only screen and (max-width: 800px) {
   .settings-field > .position nav {
-    width: 23%;
+    width: 20%;
   }
 }
 .settings-field > .position nav a:nth-child(1) {
@@ -950,7 +950,8 @@ dialog::backdrop {
 }
 @media only screen and (max-width: 800px) {
   .settings-field > .position nav a {
-    margin: 5px 12px 5px 12px;
+    width: 80%;
+    margin: 0 0 0 10px;
     color: transparent;
   }
 }
@@ -1236,6 +1237,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .quiz-field .position .quiz-content-field {
     width: 100%;
+    margin-top: 10px;
   }
 }
 .quiz-field .position .quiz-content-field > h1 {
@@ -1281,6 +1283,11 @@ dialog::backdrop {
   font-size: 0.7rem;
   z-index: 50;
 }
+@media only screen and (max-width: 800px) {
+  .quiz-field .position .quiz-content-field > h1 > div > div:hover:after {
+    display: none;
+  }
+}
 .quiz-field .position .quiz-content-field > h1 > div > div svg {
   width: 22px;
   height: 22px;
@@ -1325,7 +1332,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .quiz-field .position .quiz-content-field button {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
   }
 }
 .quiz-field .position .quiz-content-field button:hover {
@@ -1382,6 +1389,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .quiz-page > div {
     width: 95%;
+    margin-bottom: 10vh;
   }
 }
 .quiz-page > div::-webkit-scrollbar {
@@ -1928,6 +1936,11 @@ dialog::backdrop {
   margin-top: 10px;
   padding: 10px 20px;
   border-radius: 0 0 5px 5px;
+}
+@media only screen and (max-width: 800px) {
+  .dropdown .log-out {
+    padding: 15px 20px;
+  }
 }
 
 .login-redirect {
@@ -2523,8 +2536,8 @@ dialog::backdrop {
 
 .toggle-menu {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 5px;
   display: none;
   align-items: center;
