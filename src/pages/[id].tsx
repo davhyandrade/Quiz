@@ -118,7 +118,7 @@ export default function Quizzes() {
               <span>{quiz.description}</span>
               <p>Questões de múltipla escolha, com resposta única referente ao tema abordado pelo Quiz.</p>
               <button onClick={() => setIsActiveQuiz(true)}>Começar</button>
-              {window.matchMedia("(max-width: 800px)") &&
+              {window.innerWidth < 800 &&
                 <div className='quiz-image-field'>
                   <img src={quiz.image} alt="faddfds" />
                   <div>
