@@ -131,7 +131,7 @@ section {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 998;
+  z-index: 997;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1237,7 +1237,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .quiz-field .position .quiz-content-field {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 }
 .quiz-field .position .quiz-content-field > h1 {
@@ -1528,6 +1528,7 @@ dialog::backdrop {
 @media only screen and (max-width: 800px) {
   .quiz-page > div .result-quiz span {
     text-align: center;
+    width: 70%;
   }
 }
 
@@ -2544,7 +2545,7 @@ dialog::backdrop {
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s;
-  z-index: 999;
+  z-index: 998;
 }
 @media only screen and (max-width: 800px) {
   .toggle-menu {
