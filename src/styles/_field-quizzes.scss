@@ -76,7 +76,12 @@
           height: 180px;
         }
       }
-  
+      
+      &:active {
+        transition: 0.1s;
+        opacity: 10%;
+      }
+
       &:hover { 
         transition: 1s;
         
@@ -89,51 +94,67 @@
           transform: scale(1.1);
           filter: sepia(100%) hue-rotate(188deg) saturate(382%) brightness(0.7) grayscale(0.5);
         }
+
+        @media only screen and (max-width: 800px) {
+          & {
+            transition: 1s;
+            
+            .info-card .position p {
+              white-space: nowrap;
+            }
+      
+            > img, svg {
+              transition: 0.3s;
+              transform: none;
+              filter: none;
+            }
+          }
+        }
       }
     }
+  }
 
-    .add-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+  .add-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-      &:hover {
-        span {
-          transition: 1s;
-          opacity: 30%;
-        }
-        
-        > svg {
-          transition: 1s;
-          opacity: 10%;
-        }
+    &:hover {
+      span {
+        transition: 1s;
+        opacity: 30%;
       }
       
-      &:active {
+      > svg {
         transition: 1s;
-        filter: brightness(0.5);
-        
-        span {
-          transition: 0.1s;
-          opacity: 100%;
-        }
-
-        > svg {
-          transition: 0.1s;
-          opacity: 50%;
-        }
+        opacity: 10%;
       }
-
-      svg {
-        opacity: 45%;
-      }
-
-      span {
-        color: var(--color-text);
-        margin-top: 15px;
-        font-size: 1.1rem;
-      } 
     }
+    
+    &:active {
+      transition: 1s;
+      filter: brightness(0.5);
+      
+      span {
+        transition: 0.1s;
+        opacity: 100%;
+      }
+
+      > svg {
+        transition: 0.1s;
+        opacity: 50%;
+      }
+    }
+
+    svg {
+      opacity: 45%;
+    }
+
+    span {
+      color: var(--color-text);
+      margin-top: 15px;
+      font-size: 1.1rem;
+    } 
   }
 }

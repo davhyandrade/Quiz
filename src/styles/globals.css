@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -862,6 +863,10 @@ dialog::backdrop {
     height: 180px;
   }
 }
+.field-quizzes > .position .quiz:active {
+  transition: 0.1s;
+  opacity: 10%;
+}
 .field-quizzes > .position .quiz:hover {
   transition: 1s;
 }
@@ -873,36 +878,49 @@ dialog::backdrop {
   transform: scale(1.1);
   filter: sepia(100%) hue-rotate(188deg) saturate(382%) brightness(0.7) grayscale(0.5);
 }
-.field-quizzes > .position .add-button {
+@media only screen and (max-width: 800px) {
+  .field-quizzes > .position .quiz:hover {
+    transition: 1s;
+  }
+  .field-quizzes > .position .quiz:hover .info-card .position p {
+    white-space: nowrap;
+  }
+  .field-quizzes > .position .quiz:hover > img, .field-quizzes > .position .quiz:hover svg {
+    transition: 0.3s;
+    transform: none;
+    filter: none;
+  }
+}
+.field-quizzes .add-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.field-quizzes > .position .add-button:hover span {
+.field-quizzes .add-button:hover span {
   transition: 1s;
   opacity: 30%;
 }
-.field-quizzes > .position .add-button:hover > svg {
+.field-quizzes .add-button:hover > svg {
   transition: 1s;
   opacity: 10%;
 }
-.field-quizzes > .position .add-button:active {
+.field-quizzes .add-button:active {
   transition: 1s;
   filter: brightness(0.5);
 }
-.field-quizzes > .position .add-button:active span {
+.field-quizzes .add-button:active span {
   transition: 0.1s;
   opacity: 100%;
 }
-.field-quizzes > .position .add-button:active > svg {
+.field-quizzes .add-button:active > svg {
   transition: 0.1s;
   opacity: 50%;
 }
-.field-quizzes > .position .add-button svg {
+.field-quizzes .add-button svg {
   opacity: 45%;
 }
-.field-quizzes > .position .add-button span {
+.field-quizzes .add-button span {
   color: var(--color-text);
   margin-top: 15px;
   font-size: 1.1rem;
