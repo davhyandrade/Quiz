@@ -49,6 +49,11 @@ section {
   align-items: center;
   margin-top: 15px;
 }
+@media only screen and (max-width: 800px) {
+  .menu .position > div {
+    margin-top: 0;
+  }
+}
 .menu .position > div > a {
   text-decoration: none;
   padding: 10px 35px;
@@ -95,7 +100,6 @@ section {
 @media only screen and (max-width: 800px) {
   .menu .position > div > span,
   .menu .position > div img {
-    margin-left: 15px;
     width: 35px;
     height: 35px;
   }
@@ -2540,7 +2544,7 @@ dialog::backdrop {
   cursor: pointer;
   transition: background 0.2s;
   z-index: 998;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 @media only screen and (max-width: 800px) {
   .toggle-menu {
@@ -2727,6 +2731,11 @@ dialog::backdrop {
   text-align: center;
   font-size: 1.5rem;
   font-weight: normal;
+}
+@media only screen and (max-width: 800px) {
+  .nothing-found h1 {
+    width: 80%;
+  }
 }
 
 .field-loader-search {
