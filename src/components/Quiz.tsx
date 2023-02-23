@@ -42,22 +42,6 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
     return setIsActivePage((prev) => prev === 1 ? 2 : prev += 1);
   }
 
-  const progressBar = useRef<any>(null);
-
-  function handleProgressBar() {
-    if (isActivePage !== 0) setIndexQuestionsPageQuiz(0);
-    progressBar.current.classList.remove('active');
-    setTimeout(() => {
-      progressBar.current.classList.add('active');
-      setTimeout(() => handleNextPage(), 60 * 1000); //1 min
-    }, 100);
-  }
-
-  useEffect(() => {
-    console.log('passou');
-    handleProgressBar();
-  }, [isActivePage]);
-
   const [questionAnswer, setQuestionAnswer] = useState<Array<Object>>([{}]);
   const [responseQuiz, setResponseQuiz] = useState<string>();
   const [questionClicked, setQuestionClicked] = useState<number>();
@@ -82,7 +66,6 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
           {!isCompletedQuiz ? (
             <>
               <div className="header">
-                <div ref={progressBar} className="progress-bar" />
                 <span>
                   {isActivePage + 1} of {data.pages.length}
                 </span>
