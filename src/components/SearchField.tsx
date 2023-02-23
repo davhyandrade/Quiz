@@ -112,7 +112,7 @@ export default function Search({ handleCloseSearch, isActiveSearchField }: any) 
           </div>
         ) : nothingFound ? (
           <div className="nothing-found">
-            <h1>Nenhum resultado encontrado para "{inputSearch.current.value}"</h1>
+            <h1>Nenhum resultado encontrado para &ldquo;{inputSearch.current.value}&rdquo;</h1>
           </div>
         ) : (
           <div className="field-quizzes">
