@@ -31,4 +31,6 @@ const quizSchema = new mongoose.Schema({
   },
 });
 
+quizSchema.index({ "$**": "text" });
+
 export default mongoose.models.Quiz || mongoose.model('Quiz', quizSchema);

@@ -1,6 +1,5 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { Context } from '../context/layout';
 
 interface IProps {
   data: any;
@@ -22,12 +21,6 @@ const GlobalStyles = createGlobalStyle<IProps>`
 `;
 
 export default function Quiz({ data, handleCloseQuiz }: any) {
-  const { isActiveQuiz } = useContext(Context);
-
-  useEffect(() => {
-    if (isActiveQuiz) window.scrollTo(0, 0);
-  }, [isActiveQuiz]);
-
   const [isCompletedQuiz, setIsCompletedQuiz] = useState<boolean>(false);
   const [resultQuiz, setResultQuiz] = useState<number>();
 
@@ -46,7 +39,7 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
     if (isActivePage === data.pages.length - 1) {
       return setIsCompletedQuiz(true);
     }
-    return setIsActivePage(isActivePage + 1);
+    return setIsActivePage((prev) => prev === 1 ? 2 : prev += 1);
   }
 
   const progressBar = useRef<any>(null);
@@ -56,13 +49,12 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
     progressBar.current.classList.remove('active');
     setTimeout(() => {
       progressBar.current.classList.add('active');
-      setTimeout(() => {
-        handleNextPage();
-      }, 60 * 1000); //1 min
+      setTimeout(() => handleNextPage(), 60 * 1000); //1 min
     }, 100);
   }
 
   useEffect(() => {
+    console.log('passou');
     handleProgressBar();
   }, [isActivePage]);
 

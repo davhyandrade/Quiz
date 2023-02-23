@@ -27,6 +27,8 @@ export default function Menu() {
     isActiveButtonMenu,
     isActiveDropdown,
     setIsActiveDropdown,
+    isActiveSearchField,
+    setIsActiveSearchField
   } = useContext(Context);
 
   const urlImage = [
@@ -71,6 +73,14 @@ export default function Menu() {
     handleCloseMenuMobile();
   }
 
+  function handleSearchBar() {
+    if (isActiveSearchField) {
+      return setIsActiveSearchField(false);
+    } else {
+      return setIsActiveSearchField(true);
+    }
+  }
+
   return (
     <>
       <GlobalStyles isActiveToggleMenu={isActiveToggleMenu} />
@@ -78,6 +88,22 @@ export default function Menu() {
         <div className="position">
           <Image src={urlImage[0].url} alt="logo" loading="eager" width={85} height={46} priority />
           <div>
+              <svg
+                onClick={handleSearchBar}
+                id='btn-search'
+                version="1.0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="25px"
+                height="25px"
+                viewBox="0 0 200.000000 200.000000"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <g transform="translate(0.000000,200.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                  <path
+                    d="M760 1609 c-105 -21 -221 -104 -285 -204 -116 -182 -89 -415 65 -566 131 -128 313 -166 489 -102 l74 26 181 -187 c159 -165 185 -188 213 -188 18 -1 43 6 57 16 33 21 59 72 52 100 -5 20 -96 119 -286 311 l-79 80 29 60 c104 210 36 456 -163 588 -96 64 -231 90 -347 66z m227 -143 c119 -56 193 -159 201 -282 19 -299 -325 -468 -547 -268 -184 166 -126 474 107 559 63 23 179 19 239 -9z"
+                  />
+                </g>
+              </svg>
             {!isAuth ? (
               window.innerWidth < 800 ? (
                 <>

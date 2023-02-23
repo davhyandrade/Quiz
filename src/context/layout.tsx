@@ -10,6 +10,7 @@ import Router from 'next/router';
 import Quiz from '../components/Quiz';
 import { destroyCookie, parseCookies } from 'nookies';
 import jwt from 'jsonwebtoken';
+import SearchField from '../components/SearchField';
 
 interface IContext {
   handlePageLoaded?: any;
@@ -54,6 +55,8 @@ interface IContext {
   isActiveDropdown?: boolean;
   setIsActiveWarningModal?: any;
   isActiveWarningModal?: boolean;
+  setIsActiveSearchField?: any;
+  isActiveSearchField?: boolean;
 }
 
 export const Context = createContext<IContext>({});
@@ -211,10 +214,17 @@ export default function Layout({ children }: ComponentProps) {
   const [isActiveDropdown, setIsActiveDropdown] = useState<boolean>(false);
  
   const [isActiveWarningModal, setIsActiveWarningModal] = useState<boolean>(false);
+  
+  const [isActiveSearchField, setIsActiveSearchField] = useState<boolean>(false);
+  
+  function handleCloseSearch() {
+    return setIsActiveSearchField(false);
+  }
 
   return (
     <>
       {isActiveLoading && <Loader />}
+      {isActiveSearchField && <SearchField isActiveSearchField={isActiveSearchField} handleCloseSearch={handleCloseSearch} />}
       {isActiveQuiz && <Quiz handleCloseQuiz={handleCloseQuiz} data={quiz} />}
       {isVisiblePage && (
         <Context.Provider
@@ -260,7 +270,9 @@ export default function Layout({ children }: ComponentProps) {
             setIsActiveDropdown,
             isActiveDropdown,
             setIsActiveWarningModal,
-            isActiveWarningModal
+            isActiveWarningModal,
+            setIsActiveSearchField,
+            isActiveSearchField
           }}
         >
           <Menu />

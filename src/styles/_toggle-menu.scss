@@ -9,7 +9,8 @@
   cursor: pointer;
   transition: background 0.2s;
   z-index: 998;
-
+  margin-left: 15px;
+  
   @media only screen and (max-width: 800px) {
     & {
       display: flex;

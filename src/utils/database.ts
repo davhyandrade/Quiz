@@ -17,6 +17,7 @@ export const connectDatabase = () => {
     .connect(DATABASE_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true
     })
     .then((db: any) => [cache = db.connections[0].readyState, console.log('Mongodb Atlas connected')])
     .catch((error: any) => {
