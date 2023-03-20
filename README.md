@@ -8,7 +8,7 @@ Projeto ao qual possibilita a criação e edição de quizzes, tendo presente si
 
 # Desenvolvimento
 
-Desenvolvido pelo NextJS, Typescrit, Sass e Banco de Dados não relacional MongoDB, ao qual foi trabalhado array de objetos para criar os quizzes, além do sistema de login com token jwt.
+Desenvolvido pelo NextJS, Typescript, Sass e Banco de Dados não relacional MongoDB, ao qual foi trabalhado array de objetos para criar os quizzes, além do sistema de login com token jwt.
 
 Principais bibliotecas aprendidas ao qual foram inseridas no Projeto:
 
