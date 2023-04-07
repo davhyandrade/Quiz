@@ -14,10 +14,12 @@ const GlobalStyles = createGlobalStyle<IProps>`
       --bg-backdrop: #f5f5f5b8;
       --bg-panel: #f5f5f5;
       --bg-panel-menu: #f5f5f545;
+      --color-headings: #454545;
       --color-text: gray; 
+      --color-headings-notfound: #454545;
+      --color-text-notfound: gray; 
       --color-primary: rgb(0, 132, 255);
       --color-border: #edeff0;
-      --color-headings: #454545;
       --color: white;
       --color2: white;
       --color-opposite: rgba(0, 0, 0, 0.7);
@@ -34,10 +36,12 @@ const GlobalStyles = createGlobalStyle<IProps>`
       --bg-backdrop: #20262ec7;
       --bg-panel: #20262e;
       --bg-panel-menu: #20262e40;
+      --color-headings: white;
       --color-text: #b8b8b8;
+      --color-headings-notfound: #454545;
+      --color-text-notfound: gray; 
       --color-primary: rgb(138, 180, 248);
       --color-border: rgb(255 255 255 / 10%);
-      --color-headings: white;
       --color: #10151b;
       --color-opposite: rgba(0, 0, 0, 0.7);
       --bg-description: #20262e;

@@ -98,7 +98,7 @@ export default function Dialog() {
   function handleKeyPressDialog(event: any) {
     if (event.key === 'Escape') {
       handleCloseDialog();
-    }
+    } 
   }
 
   const { setPreviewSource, previewSource } = useContext(Context);

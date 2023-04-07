@@ -11,7 +11,6 @@ interface IProps {
 
 const GlobalStyles = createGlobalStyle<IProps>`    
   ${(props) =>
-    window.innerWidth < 800 &&
     props.dataQuiz.pages?.length > 2 &&
     `.field-page {
       overflow-x: scroll;

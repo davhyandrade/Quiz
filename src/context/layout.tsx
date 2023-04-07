@@ -224,7 +224,7 @@ export default function Layout({ children }: ComponentProps) {
   return (
     <>
       {isActiveLoading && <Loader />}
-      {isActiveSearchField && <SearchField isActiveSearchField={isActiveSearchField} handleCloseSearch={handleCloseSearch} />}
+      {isActiveSearchField && <SearchField handleCloseSearch={handleCloseSearch} />}
       {isActiveQuiz && <Quiz handleCloseQuiz={handleCloseQuiz} data={quiz} />}
       {isVisiblePage && (
         <Context.Provider

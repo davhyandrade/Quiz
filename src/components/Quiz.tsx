@@ -24,7 +24,7 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
   const [isCompletedQuiz, setIsCompletedQuiz] = useState<boolean>(false);
   const [resultQuiz, setResultQuiz] = useState<number>();
 
-  const [isActivePage, setIsActivePage] = useState<number>(0);
+  let [isActivePage, setIsActivePage] = useState<number>(0);
   const [indexQuestionsPageQuiz, setIndexQuestionsPageQuiz] = useState<number>(1);
 
   useEffect(() => {
@@ -39,9 +39,13 @@ export default function Quiz({ data, handleCloseQuiz }: any) {
     if (isActivePage === data.pages.length - 1) {
       return setIsCompletedQuiz(true);
     }
-    return setIsActivePage((prev) => prev === 1 ? 2 : prev += 1);
+    return setIsActivePage(isActivePage += 1);
   }
 
+  useEffect(() => {
+    if (isActivePage != 0)setIndexQuestionsPageQuiz(0);
+  }, [isActivePage])
+  
   const [questionAnswer, setQuestionAnswer] = useState<Array<Object>>([{}]);
   const [responseQuiz, setResponseQuiz] = useState<string>();
   const [questionClicked, setQuestionClicked] = useState<number>();

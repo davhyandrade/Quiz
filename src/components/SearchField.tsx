@@ -6,16 +6,13 @@ import { toast } from 'react-toastify';
 import { createGlobalStyle } from 'styled-components';
 
 interface IProps {
-  isActiveSearchField: boolean;
   resultData: any;
 }
 
 const GlobalStyles = createGlobalStyle<IProps>`    
-  ${(props) =>
-    props.isActiveSearchField &&
-    `body {
-      overflow: hidden;
-    }`}
+  body {
+    overflow: hidden;
+  }
   ${(props) =>
     props.resultData?.length > 8 &&
     `.search-field {
@@ -23,7 +20,7 @@ const GlobalStyles = createGlobalStyle<IProps>`
     }`}
 `;
 
-export default function Search({ handleCloseSearch, isActiveSearchField }: any) {
+export default function Search({ handleCloseSearch }: any) {
   const inputSearch = useRef<any>(null);
   const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
   const [resultData, setResultData] = useState<any>();
@@ -59,7 +56,7 @@ export default function Search({ handleCloseSearch, isActiveSearchField }: any) 
 
   return (
     <>
-      <GlobalStyles resultData={resultData} isActiveSearchField={isActiveSearchField} />
+      <GlobalStyles resultData={resultData} />
       <div className="search-field">
         <div className="header">
           <form onSubmit={handleSubmit}>
